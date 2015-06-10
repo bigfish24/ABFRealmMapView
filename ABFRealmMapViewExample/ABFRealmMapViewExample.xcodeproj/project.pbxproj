@@ -1,0 +1,576 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		71DE72A537E6A950A87B16DF /* libPods-ABFRealmMapViewExample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 39DCB0B1CAEE157E33A7EB5E /* libPods-ABFRealmMapViewExample.a */; };
+		A0A087AA1B28E96E007AB6B6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A087A91B28E96E007AB6B6 /* main.m */; };
+		A0A087AD1B28E96E007AB6B6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A087AC1B28E96E007AB6B6 /* AppDelegate.m */; };
+		A0A087B01B28E96E007AB6B6 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A087AF1B28E96E007AB6B6 /* ViewController.m */; };
+		A0A087B31B28E96E007AB6B6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A0A087B11B28E96E007AB6B6 /* Main.storyboard */; };
+		A0A087B51B28E96E007AB6B6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A0A087B41B28E96E007AB6B6 /* Images.xcassets */; };
+		A0A087B81B28E96E007AB6B6 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0A087B61B28E96E007AB6B6 /* LaunchScreen.xib */; };
+		A0A087C41B28E96E007AB6B6 /* ABFRealmMapViewExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A087C31B28E96E007AB6B6 /* ABFRealmMapViewExampleTests.m */; };
+		A0A087D61B28E97D007AB6B6 /* ABFClusterAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A087CF1B28E97D007AB6B6 /* ABFClusterAnnotationView.m */; };
+		A0A087D71B28E97D007AB6B6 /* ABFLocationFetchedResultsController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A087D11B28E97D007AB6B6 /* ABFLocationFetchedResultsController.m */; };
+		A0A087D81B28E97D007AB6B6 /* ABFLocationFetchRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A087D31B28E97D007AB6B6 /* ABFLocationFetchRequest.m */; };
+		A0A087D91B28E97D007AB6B6 /* ABFRealmMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A087D51B28E97D007AB6B6 /* ABFRealmMapView.m */; };
+		E2F31BAFB2E31B1463151057 /* libPods-ABFRealmMapViewExampleTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 05034151002B00773C458781 /* libPods-ABFRealmMapViewExampleTests.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A0A087BE1B28E96E007AB6B6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A0A0879C1B28E96E007AB6B6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A0A087A31B28E96E007AB6B6;
+			remoteInfo = ABFRealmMapViewExample;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		05034151002B00773C458781 /* libPods-ABFRealmMapViewExampleTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ABFRealmMapViewExampleTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		39DCB0B1CAEE157E33A7EB5E /* libPods-ABFRealmMapViewExample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ABFRealmMapViewExample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5A3969D99BFD3D6B39994670 /* Pods-ABFRealmMapViewExampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ABFRealmMapViewExampleTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ABFRealmMapViewExampleTests/Pods-ABFRealmMapViewExampleTests.debug.xcconfig"; sourceTree = "<group>"; };
+		5CB4412D57A10A865F6D7F49 /* Pods-ABFRealmMapViewExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ABFRealmMapViewExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ABFRealmMapViewExample/Pods-ABFRealmMapViewExample.debug.xcconfig"; sourceTree = "<group>"; };
+		A0A087A41B28E96E007AB6B6 /* ABFRealmMapViewExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ABFRealmMapViewExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A0A087A81B28E96E007AB6B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A0A087A91B28E96E007AB6B6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		A0A087AB1B28E96E007AB6B6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		A0A087AC1B28E96E007AB6B6 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		A0A087AE1B28E96E007AB6B6 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		A0A087AF1B28E96E007AB6B6 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		A0A087B21B28E96E007AB6B6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		A0A087B41B28E96E007AB6B6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		A0A087B71B28E96E007AB6B6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		A0A087BD1B28E96E007AB6B6 /* ABFRealmMapViewExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ABFRealmMapViewExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A0A087C21B28E96E007AB6B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A0A087C31B28E96E007AB6B6 /* ABFRealmMapViewExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ABFRealmMapViewExampleTests.m; sourceTree = "<group>"; };
+		A0A087CE1B28E97D007AB6B6 /* ABFClusterAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABFClusterAnnotationView.h; sourceTree = "<group>"; };
+		A0A087CF1B28E97D007AB6B6 /* ABFClusterAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABFClusterAnnotationView.m; sourceTree = "<group>"; };
+		A0A087D01B28E97D007AB6B6 /* ABFLocationFetchedResultsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABFLocationFetchedResultsController.h; sourceTree = "<group>"; };
+		A0A087D11B28E97D007AB6B6 /* ABFLocationFetchedResultsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABFLocationFetchedResultsController.m; sourceTree = "<group>"; };
+		A0A087D21B28E97D007AB6B6 /* ABFLocationFetchRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABFLocationFetchRequest.h; sourceTree = "<group>"; };
+		A0A087D31B28E97D007AB6B6 /* ABFLocationFetchRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABFLocationFetchRequest.m; sourceTree = "<group>"; };
+		A0A087D41B28E97D007AB6B6 /* ABFRealmMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABFRealmMapView.h; sourceTree = "<group>"; };
+		A0A087D51B28E97D007AB6B6 /* ABFRealmMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABFRealmMapView.m; sourceTree = "<group>"; };
+		A18E295E55334CF29CADD434 /* Pods-ABFRealmMapViewExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ABFRealmMapViewExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-ABFRealmMapViewExample/Pods-ABFRealmMapViewExample.release.xcconfig"; sourceTree = "<group>"; };
+		E2C39F210D21B2850A9D2DA4 /* Pods-ABFRealmMapViewExampleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ABFRealmMapViewExampleTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ABFRealmMapViewExampleTests/Pods-ABFRealmMapViewExampleTests.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A0A087A11B28E96E007AB6B6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				71DE72A537E6A950A87B16DF /* libPods-ABFRealmMapViewExample.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A0A087BA1B28E96E007AB6B6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E2F31BAFB2E31B1463151057 /* libPods-ABFRealmMapViewExampleTests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1C69E434D9FCA6529D3ED711 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5CB4412D57A10A865F6D7F49 /* Pods-ABFRealmMapViewExample.debug.xcconfig */,
+				A18E295E55334CF29CADD434 /* Pods-ABFRealmMapViewExample.release.xcconfig */,
+				5A3969D99BFD3D6B39994670 /* Pods-ABFRealmMapViewExampleTests.debug.xcconfig */,
+				E2C39F210D21B2850A9D2DA4 /* Pods-ABFRealmMapViewExampleTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		A0A0879B1B28E96E007AB6B6 = {
+			isa = PBXGroup;
+			children = (
+				A0A087A61B28E96E007AB6B6 /* ABFRealmMapViewExample */,
+				A0A087C01B28E96E007AB6B6 /* ABFRealmMapViewExampleTests */,
+				A0A087A51B28E96E007AB6B6 /* Products */,
+				1C69E434D9FCA6529D3ED711 /* Pods */,
+				E676B216CA5AADFA5E135EDB /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		A0A087A51B28E96E007AB6B6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A0A087A41B28E96E007AB6B6 /* ABFRealmMapViewExample.app */,
+				A0A087BD1B28E96E007AB6B6 /* ABFRealmMapViewExampleTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A0A087A61B28E96E007AB6B6 /* ABFRealmMapViewExample */ = {
+			isa = PBXGroup;
+			children = (
+				A0A087CD1B28E97D007AB6B6 /* ABFRealmMapView */,
+				A0A087AB1B28E96E007AB6B6 /* AppDelegate.h */,
+				A0A087AC1B28E96E007AB6B6 /* AppDelegate.m */,
+				A0A087AE1B28E96E007AB6B6 /* ViewController.h */,
+				A0A087AF1B28E96E007AB6B6 /* ViewController.m */,
+				A0A087B11B28E96E007AB6B6 /* Main.storyboard */,
+				A0A087B41B28E96E007AB6B6 /* Images.xcassets */,
+				A0A087B61B28E96E007AB6B6 /* LaunchScreen.xib */,
+				A0A087A71B28E96E007AB6B6 /* Supporting Files */,
+			);
+			path = ABFRealmMapViewExample;
+			sourceTree = "<group>";
+		};
+		A0A087A71B28E96E007AB6B6 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A0A087A81B28E96E007AB6B6 /* Info.plist */,
+				A0A087A91B28E96E007AB6B6 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A0A087C01B28E96E007AB6B6 /* ABFRealmMapViewExampleTests */ = {
+			isa = PBXGroup;
+			children = (
+				A0A087C31B28E96E007AB6B6 /* ABFRealmMapViewExampleTests.m */,
+				A0A087C11B28E96E007AB6B6 /* Supporting Files */,
+			);
+			path = ABFRealmMapViewExampleTests;
+			sourceTree = "<group>";
+		};
+		A0A087C11B28E96E007AB6B6 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A0A087C21B28E96E007AB6B6 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A0A087CD1B28E97D007AB6B6 /* ABFRealmMapView */ = {
+			isa = PBXGroup;
+			children = (
+				A0A087CE1B28E97D007AB6B6 /* ABFClusterAnnotationView.h */,
+				A0A087CF1B28E97D007AB6B6 /* ABFClusterAnnotationView.m */,
+				A0A087D01B28E97D007AB6B6 /* ABFLocationFetchedResultsController.h */,
+				A0A087D11B28E97D007AB6B6 /* ABFLocationFetchedResultsController.m */,
+				A0A087D21B28E97D007AB6B6 /* ABFLocationFetchRequest.h */,
+				A0A087D31B28E97D007AB6B6 /* ABFLocationFetchRequest.m */,
+				A0A087D41B28E97D007AB6B6 /* ABFRealmMapView.h */,
+				A0A087D51B28E97D007AB6B6 /* ABFRealmMapView.m */,
+			);
+			name = ABFRealmMapView;
+			path = ../../ABFRealmMapView;
+			sourceTree = "<group>";
+		};
+		E676B216CA5AADFA5E135EDB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				39DCB0B1CAEE157E33A7EB5E /* libPods-ABFRealmMapViewExample.a */,
+				05034151002B00773C458781 /* libPods-ABFRealmMapViewExampleTests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A0A087A31B28E96E007AB6B6 /* ABFRealmMapViewExample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A0A087C71B28E96E007AB6B6 /* Build configuration list for PBXNativeTarget "ABFRealmMapViewExample" */;
+			buildPhases = (
+				238995B96BB72DA3867D43F7 /* Check Pods Manifest.lock */,
+				A0A087A01B28E96E007AB6B6 /* Sources */,
+				A0A087A11B28E96E007AB6B6 /* Frameworks */,
+				A0A087A21B28E96E007AB6B6 /* Resources */,
+				CDA062B19E4DCF8DDD6D1332 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ABFRealmMapViewExample;
+			productName = ABFRealmMapViewExample;
+			productReference = A0A087A41B28E96E007AB6B6 /* ABFRealmMapViewExample.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A0A087BC1B28E96E007AB6B6 /* ABFRealmMapViewExampleTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A0A087CA1B28E96E007AB6B6 /* Build configuration list for PBXNativeTarget "ABFRealmMapViewExampleTests" */;
+			buildPhases = (
+				BFAE2926EE859D8D3392976D /* Check Pods Manifest.lock */,
+				A0A087B91B28E96E007AB6B6 /* Sources */,
+				A0A087BA1B28E96E007AB6B6 /* Frameworks */,
+				A0A087BB1B28E96E007AB6B6 /* Resources */,
+				25F75BA923A5FAC2A638F66A /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A0A087BF1B28E96E007AB6B6 /* PBXTargetDependency */,
+			);
+			name = ABFRealmMapViewExampleTests;
+			productName = ABFRealmMapViewExampleTests;
+			productReference = A0A087BD1B28E96E007AB6B6 /* ABFRealmMapViewExampleTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A0A0879C1B28E96E007AB6B6 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0700;
+				ORGANIZATIONNAME = "Adam Fish";
+				TargetAttributes = {
+					A0A087A31B28E96E007AB6B6 = {
+						CreatedOnToolsVersion = 6.3.2;
+					};
+					A0A087BC1B28E96E007AB6B6 = {
+						CreatedOnToolsVersion = 6.3.2;
+						TestTargetID = A0A087A31B28E96E007AB6B6;
+					};
+				};
+			};
+			buildConfigurationList = A0A0879F1B28E96E007AB6B6 /* Build configuration list for PBXProject "ABFRealmMapViewExample" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A0A0879B1B28E96E007AB6B6;
+			productRefGroup = A0A087A51B28E96E007AB6B6 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A0A087A31B28E96E007AB6B6 /* ABFRealmMapViewExample */,
+				A0A087BC1B28E96E007AB6B6 /* ABFRealmMapViewExampleTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A0A087A21B28E96E007AB6B6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A0A087B31B28E96E007AB6B6 /* Main.storyboard in Resources */,
+				A0A087B81B28E96E007AB6B6 /* LaunchScreen.xib in Resources */,
+				A0A087B51B28E96E007AB6B6 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A0A087BB1B28E96E007AB6B6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		238995B96BB72DA3867D43F7 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		25F75BA923A5FAC2A638F66A /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ABFRealmMapViewExampleTests/Pods-ABFRealmMapViewExampleTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BFAE2926EE859D8D3392976D /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		CDA062B19E4DCF8DDD6D1332 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ABFRealmMapViewExample/Pods-ABFRealmMapViewExample-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A0A087A01B28E96E007AB6B6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A0A087B01B28E96E007AB6B6 /* ViewController.m in Sources */,
+				A0A087AD1B28E96E007AB6B6 /* AppDelegate.m in Sources */,
+				A0A087D61B28E97D007AB6B6 /* ABFClusterAnnotationView.m in Sources */,
+				A0A087D81B28E97D007AB6B6 /* ABFLocationFetchRequest.m in Sources */,
+				A0A087AA1B28E96E007AB6B6 /* main.m in Sources */,
+				A0A087D91B28E97D007AB6B6 /* ABFRealmMapView.m in Sources */,
+				A0A087D71B28E97D007AB6B6 /* ABFLocationFetchedResultsController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A0A087B91B28E96E007AB6B6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A0A087C41B28E96E007AB6B6 /* ABFRealmMapViewExampleTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A0A087BF1B28E96E007AB6B6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A0A087A31B28E96E007AB6B6 /* ABFRealmMapViewExample */;
+			targetProxy = A0A087BE1B28E96E007AB6B6 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		A0A087B11B28E96E007AB6B6 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A0A087B21B28E96E007AB6B6 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		A0A087B61B28E96E007AB6B6 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A0A087B71B28E96E007AB6B6 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A0A087C51B28E96E007AB6B6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A0A087C61B28E96E007AB6B6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A0A087C81B28E96E007AB6B6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5CB4412D57A10A865F6D7F49 /* Pods-ABFRealmMapViewExample.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = ABFRealmMapViewExample/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Realm.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		A0A087C91B28E96E007AB6B6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A18E295E55334CF29CADD434 /* Pods-ABFRealmMapViewExample.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = ABFRealmMapViewExample/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Realm.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		A0A087CB1B28E96E007AB6B6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5A3969D99BFD3D6B39994670 /* Pods-ABFRealmMapViewExampleTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = ABFRealmMapViewExampleTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Realm.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ABFRealmMapViewExample.app/ABFRealmMapViewExample";
+			};
+			name = Debug;
+		};
+		A0A087CC1B28E96E007AB6B6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E2C39F210D21B2850A9D2DA4 /* Pods-ABFRealmMapViewExampleTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = ABFRealmMapViewExampleTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Realm.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ABFRealmMapViewExample.app/ABFRealmMapViewExample";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A0A0879F1B28E96E007AB6B6 /* Build configuration list for PBXProject "ABFRealmMapViewExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A0A087C51B28E96E007AB6B6 /* Debug */,
+				A0A087C61B28E96E007AB6B6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A0A087C71B28E96E007AB6B6 /* Build configuration list for PBXNativeTarget "ABFRealmMapViewExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A0A087C81B28E96E007AB6B6 /* Debug */,
+				A0A087C91B28E96E007AB6B6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A0A087CA1B28E96E007AB6B6 /* Build configuration list for PBXNativeTarget "ABFRealmMapViewExampleTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A0A087CB1B28E96E007AB6B6 /* Debug */,
+				A0A087CC1B28E96E007AB6B6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A0A0879C1B28E96E007AB6B6 /* Project object */;
+}

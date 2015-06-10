@@ -1,0 +1,13 @@
+# Uncomment this line to define a global platform for your project
+# platform :ios, '6.0'
+
+target 'ABFRealmMapViewExample' do
+  pod 'Realm'
+  pod 'RBQFetchedResultsController'
+  pod 'RealmSFRestaurantData'
+end
+
+target 'ABFRealmMapViewExampleTests' do
+  pod 'Realm/Headers'
+end
+
