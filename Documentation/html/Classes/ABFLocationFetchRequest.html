@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>ABFLocationFetchRequest Class Reference</title>
+
+	<link rel="stylesheet" href="../css/style.css">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1.4">
+	<meta name="generator" content="appledoc 2.2.1 (build 1333)">
+</head>
+<body class="appledoc">
+	<header>
+		<div class="container" class="hide-in-xcode">
+			
+			<h1 id="library-title">
+				<a href="../index.html">ABFRealmMapView </a>
+			</h1>
+
+			<p id="developer-home">
+				<a href="../index.html">Realm</a>
+			</p>
+			
+		</div>
+	</header>
+
+	<aside>
+		<div class="container">
+			<nav>
+				<ul id="header-buttons" role="toolbar">
+					<li><a href="../index.html">Index</a></li>
+<li><a href="../hierarchy.html">Hierarchy</a></li>
+
+					<li id="on-this-page" role="navigation">
+						<label>
+							On This Page
+
+							<div class="chevron">
+								<div class="chevy chevron-left"></div>
+								<div class="chevy chevron-right"></div>
+							</div>
+
+							<select id="jump-to">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+
+	
+	
+	<optgroup label="Properties">
+		
+		<option value="//api/name/latitudeKeyPath">latitudeKeyPath</option>
+		
+		<option value="//api/name/longitudeKeyPath">longitudeKeyPath</option>
+		
+		<option value="//api/name/region">region</option>
+		
+	</optgroup>
+	
+
+	
+	<optgroup label="Class Methods">
+		
+		<option value="//api/name/locationFetchRequestWithEntityName:inRealm:latitudeKeyPath:longitudeKeyPath:forRegion:">+ locationFetchRequestWithEntityName:inRealm:latitudeKeyPath:longitudeKeyPath:forRegion:</option>
+		
+	</optgroup>
+	
+
+	
+	
+</select>
+						</label>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</aside>
+
+	<article>
+		<div id="overview_contents" class="container">
+			<div id="content">
+				<main role="main">
+					<h1 class="title">ABFLocationFetchRequest Class Reference</h1>
+
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<th>Inherits from</th>
+	<td>RBQFetchRequest</td>
+</tr><tr>
+	<th>Declared in</th>
+	<td>ABFLocationFetchRequest.h</td>
+</tr>
+						</tbody></table></div>
+					
+
+                    
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>Location specific subclass of RBQFetchRequest that allows for location fetching on Realm objects that contain latitude and longitude values.</p>
+
+<p>Location fetch is defined by a MKCoordinate <a href="#//api/name/region">region</a> and is converted into a predicate for Realm querying.</p>
+					</div>
+					
+					
+
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						
+
+						
+						
+
+						<div class="task-list">
+							<div class="section-method">
+	<a name="//api/name/latitudeKeyPath" title="latitudeKeyPath"></a>
+	<h3 class="method-title"><code><a href="#//api/name/latitudeKeyPath">&nbsp;&nbsp;latitudeKeyPath</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Latitude key path on the Realm object for entityName</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) NSString *latitudeKeyPath</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Latitude key path on the Realm object for entityName</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ABFLocationFetchRequest.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/longitudeKeyPath" title="longitudeKeyPath"></a>
+	<h3 class="method-title"><code><a href="#//api/name/longitudeKeyPath">&nbsp;&nbsp;longitudeKeyPath</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Longitude key path on the Realm object for entityName</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) NSString *longitudeKeyPath</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Longitude key path on the Realm object for entityName</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ABFLocationFetchRequest.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/region" title="region"></a>
+	<h3 class="method-title"><code><a href="#//api/name/region">&nbsp;&nbsp;region</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Region that defines the fetch boundaries</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) MKCoordinateRegion region</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Region that defines the fetch boundaries</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ABFLocationFetchRequest.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/locationFetchRequestWithEntityName:inRealm:latitudeKeyPath:longitudeKeyPath:forRegion:" title="locationFetchRequestWithEntityName:inRealm:latitudeKeyPath:longitudeKeyPath:forRegion:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/locationFetchRequestWithEntityName:inRealm:latitudeKeyPath:longitudeKeyPath:forRegion:">+&nbsp;locationFetchRequestWithEntityName:inRealm:latitudeKeyPath:longitudeKeyPath:forRegion:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Creates a ABFLocationFetchRequest instance that defines a fetch based off of a coordinate <a href="#//api/name/region">region</a> boundary.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (instancetype)locationFetchRequestWithEntityName:(NSString *)<em>entityName</em> inRealm:(RLMRealm *)<em>realm</em> latitudeKeyPath:(NSString *)<em>latitudeKeyPath</em> longitudeKeyPath:(NSString *)<em>longitudeKeyPath</em> forRegion:(MKCoordinateRegion)<em>region</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>entityName</code></th>
+						<td><p>the Realm object name (class name)</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>realm</code></th>
+						<td><p>the RLMRealm in which the entity(s) exist</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>latitudeKeyPath</code></th>
+						<td><p>the latitude key path for the value to test the latitude limits against</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>longitudeKeyPath</code></th>
+						<td><p>the longitude key path for the value to test the longitude limits against</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>region</code></th>
+						<td><p>the <a href="#//api/name/region">region</a> that represents the search boundary</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>an instance of ABFLocationFetchRequest that contains the NSPredicate for the fetch</p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Creates a ABFLocationFetchRequest instance that defines a fetch based off of a coordinate <a href="#//api/name/region">region</a> boundary.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ABFLocationFetchRequest.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
+						</div>
+						
+					</div>
+					
+					
+
+                    
+                    
+          
+				</main>
+
+				<footer>
+					<div class="footer-copyright">
+						
+						<p class="copyright">Copyright &copy; 2015 Realm. All rights reserved. Updated: 2015-06-10</p>
+						
+						
+						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1333)</a>.</p>
+						
+					</div>
+				</footer>
+			</div>
+		</div>
+	</article>
+
+	<script src="../js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>ABFLocationFetchedResultsController Class Reference</title>
+
+	<link rel="stylesheet" href="../css/style.css">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1.4">
+	<meta name="generator" content="appledoc 2.2.1 (build 1333)">
+</head>
+<body class="appledoc">
+	<header>
+		<div class="container" class="hide-in-xcode">
+			
+			<h1 id="library-title">
+				<a href="../index.html">ABFRealmMapView </a>
+			</h1>
+
+			<p id="developer-home">
+				<a href="../index.html">Realm</a>
+			</p>
+			
+		</div>
+	</header>
+
+	<aside>
+		<div class="container">
+			<nav>
+				<ul id="header-buttons" role="toolbar">
+					<li><a href="../index.html">Index</a></li>
+<li><a href="../hierarchy.html">Hierarchy</a></li>
+
+					<li id="on-this-page" role="navigation">
+						<label>
+							On This Page
+
+							<div class="chevron">
+								<div class="chevy chevron-left"></div>
+								<div class="chevy chevron-right"></div>
+							</div>
+
+							<select id="jump-to">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+
+	
+	
+	<optgroup label="Properties">
+		
+		<option value="//api/name/annotations">annotations</option>
+		
+		<option value="//api/name/clusterTitleFormatString">clusterTitleFormatString</option>
+		
+		<option value="//api/name/fetchRequest">fetchRequest</option>
+		
+		<option value="//api/name/safeObjects">safeObjects</option>
+		
+		<option value="//api/name/sortDescriptor">sortDescriptor</option>
+		
+		<option value="//api/name/subtitleKeyPath">subtitleKeyPath</option>
+		
+		<option value="//api/name/titleKeyPath">titleKeyPath</option>
+		
+	</optgroup>
+	
+
+	
+
+	
+	<optgroup label="Instance Methods">
+		
+		<option value="//api/name/initWithLocationFetchRequest:titleKeyPath:subtitleKeyPath:">- initWithLocationFetchRequest:titleKeyPath:subtitleKeyPath:</option>
+		
+		<option value="//api/name/performClusteringFetchForVisibleMapRect:zoomScale:">- performClusteringFetchForVisibleMapRect:zoomScale:</option>
+		
+		<option value="//api/name/performFetch">- performFetch</option>
+		
+		<option value="//api/name/updateLocationFetchRequest:titleKeyPath:subtitleKeyPath:">- updateLocationFetchRequest:titleKeyPath:subtitleKeyPath:</option>
+		
+	</optgroup>
+	
+	
+</select>
+						</label>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</aside>
+
+	<article>
+		<div id="overview_contents" class="container">
+			<div id="content">
+				<main role="main">
+					<h1 class="title">ABFLocationFetchedResultsController Class Reference</h1>
+
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<th>Inherits from</th>
+	<td>NSObject</td>
+</tr><tr>
+	<th>Declared in</th>
+	<td>ABFLocationFetchedResultsController.h</td>
+</tr>
+						</tbody></table></div>
+					
+
+                    
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>This class acts as a controller to perform location fetches against a Realm object
+that contains latitude and longitude values (the object must also contain a primary key).</p>
+
+<p>The controller performs the fetch and creates ABFAnnotations. If a sort descriptor is
+specified the resulting objects will be sorted by distance.</p>
+
+<p>Finally, the controller can also cluster the objects based off the visible map rect size
+and zoom level. If a clustering fetch is performed, the resulting ABFAnnotations will
+be type ABFAnnotationTypeCluster and contain all of the objects in the cluster.</p>
+					</div>
+					
+					
+
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						
+
+						
+						
+
+						<div class="task-list">
+							<div class="section-method">
+	<a name="//api/name/fetchRequest" title="fetchRequest"></a>
+	<h3 class="method-title"><code><a href="#//api/name/fetchRequest">&nbsp;&nbsp;fetchRequest</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>The current location fetch request</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) ABFLocationFetchRequest *fetchRequest</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>The current location fetch request</p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection see-also-section">
+				<h4 class="method-subtitle">See Also</h4>
+				<ul>
+					
+					<li><code><p><a href="../Classes/ABFLocationFetchRequest.html">ABFLocationFetchRequest</a></p></code></li>
+					
+				</ul>
+			</div>
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ABFLocationFetchedResultsController.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/sortDescriptor" title="sortDescriptor"></a>
+	<h3 class="method-title"><code><a href="#//api/name/sortDescriptor">&nbsp;&nbsp;sortDescriptor</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Specify a sort descriptor to sort the objects by distance.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) ABFLocationSortDescriptor *sortDescriptor</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Specify a sort descriptor to sort the objects by distance.</p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection see-also-section">
+				<h4 class="method-subtitle">See Also</h4>
+				<ul>
+					
+					<li><code><p><a href="../Classes/ABFLocationSortDescriptor.html">ABFLocationSortDescriptor</a></p></code></li>
+					
+				</ul>
+			</div>
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ABFLocationFetchedResultsController.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/safeObjects" title="safeObjects"></a>
+	<h3 class="method-title"><code><a href="#//api/name/safeObjects">&nbsp;&nbsp;safeObjects</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>An array of <a href="../Classes/ABFLocationSafeRealmObject.html">ABFLocationSafeRealmObject</a>(s) representing the objects found in the fetch.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) NSArray *safeObjects</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>An array of <a href="../Classes/ABFLocationSafeRealmObject.html">ABFLocationSafeRealmObject</a>(s) representing the objects found in the fetch.</p>
+
+<p>If sort descriptor was specified then the objects will be sorted by distance.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ABFLocationFetchedResultsController.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/annotations" title="annotations"></a>
+	<h3 class="method-title"><code><a href="#//api/name/annotations">&nbsp;&nbsp;annotations</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Collection of ABFAnnotations representing the objects in the fetch.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) NSSet *annotations</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Collection of ABFAnnotations representing the objects in the fetch.</p>
+
+<p>If performClusteringFetchForVisibleMapRect:atZoomScale: was called then the
+annotations will be clusters of objects</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ABFLocationFetchedResultsController.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/titleKeyPath" title="titleKeyPath"></a>
+	<h3 class="method-title"><code><a href="#//api/name/titleKeyPath">&nbsp;&nbsp;titleKeyPath</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>The title key path on the Realm objects that correspond to the annotation title</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) NSString *titleKeyPath</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>The title key path on the Realm objects that correspond to the annotation title</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ABFLocationFetchedResultsController.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/subtitleKeyPath" title="subtitleKeyPath"></a>
+	<h3 class="method-title"><code><a href="#//api/name/subtitleKeyPath">&nbsp;&nbsp;subtitleKeyPath</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>The subtitle key path on the Realm objects that correspond to the annotation subtitle</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) NSString *subtitleKeyPath</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>The subtitle key path on the Realm objects that correspond to the annotation subtitle</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ABFLocationFetchedResultsController.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/clusterTitleFormatString" title="clusterTitleFormatString"></a>
+	<h3 class="method-title"><code><a href="#//api/name/clusterTitleFormatString">&nbsp;&nbsp;clusterTitleFormatString</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>If clustering fetch is performed, the title of the <a href="#//api/name/annotations">annotations</a> with multiple objects will be computed.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) NSString *clusterTitleFormatString</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>If clustering fetch is performed, the title of the <a href="#//api/name/annotations">annotations</a> with multiple objects will be computed.</p><div class="warning"><p><strong>Warning:</strong> The string must contain <code>$OBJECTSCOUNT</code> which will be replaced with the number of objects in the cluster</p>
+
+<p>Default is <code>@"$OBJECTSCOUNT objects in this area"</code></p></div>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection see-also-section">
+				<h4 class="method-subtitle">See Also</h4>
+				<ul>
+					
+					<li><code><p><a href="../Classes/ABFAnnotation.html">ABFAnnotation</a> title</p></code></li>
+					
+				</ul>
+			</div>
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ABFLocationFetchedResultsController.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/initWithLocationFetchRequest:titleKeyPath:subtitleKeyPath:" title="initWithLocationFetchRequest:titleKeyPath:subtitleKeyPath:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/initWithLocationFetchRequest:titleKeyPath:subtitleKeyPath:">&ndash;&nbsp;initWithLocationFetchRequest:titleKeyPath:subtitleKeyPath:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Creates an instance of ABFLocationFetchedResultsController.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (instancetype)initWithLocationFetchRequest:(ABFLocationFetchRequest *)<em>fetchRequest</em> titleKeyPath:(NSString *)<em>titleKeyPath</em> subtitleKeyPath:(NSString *)<em>subtitleKeyPath</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>fetchRequest</code></th>
+						<td><p>the current fetch request for the controller to perform</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>titleKeyPath</code></th>
+						<td><p>the title key path on the Realm objects that correspond to the annotation title</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>subtitleKeyPath</code></th>
+						<td><p>the subtitle key path on the Realm objects that correspond to the annotation subtitle</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>instance of ABFLocationFetchedResultsController</p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Creates an instance of ABFLocationFetchedResultsController.</p>
+
+<p>Controller performs a fetch against a Realm object that contains latitude and
+longitude properties.</p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection see-also-section">
+				<h4 class="method-subtitle">See Also</h4>
+				<ul>
+					
+					<li><code><p><a href="../Classes/ABFLocationFetchRequest.html">ABFLocationFetchRequest</a></p></code></li>
+					
+				</ul>
+			</div>
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ABFLocationFetchedResultsController.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/performFetch" title="performFetch"></a>
+	<h3 class="method-title"><code><a href="#//api/name/performFetch">&ndash;&nbsp;performFetch</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Performs a fetch using the current fetch request.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BOOL)performFetch</code></div>
+
+		    
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>BOOL value indicating if the fetch was successful</p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Performs a fetch using the current fetch request.</p>
+
+<p>If a sort descriptor is specified then the resulting objects will be sorted by distance.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ABFLocationFetchedResultsController.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/performClusteringFetchForVisibleMapRect:zoomScale:" title="performClusteringFetchForVisibleMapRect:zoomScale:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/performClusteringFetchForVisibleMapRect:zoomScale:">&ndash;&nbsp;performClusteringFetchForVisibleMapRect:zoomScale:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Performs a fetch and then clusters the results based off the current map view state.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BOOL)performClusteringFetchForVisibleMapRect:(MKMapRect)<em>visibleMapRect</em> zoomScale:(MKZoomScale)<em>zoomScale</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>visibleMapRect</code></th>
+						<td><p>the current visible map rect for the map view</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>zoomScale</code></th>
+						<td><p>the map view&rsquo;s zoom scale (use MKZoomScaleForMapView)</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>BOOL value indicating if the fetch was successful</p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Performs a fetch and then clusters the results based off the current map view state.</p>
+
+<p>If a sort descriptor is specified then the resulting objects will be sorted by distance.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ABFLocationFetchedResultsController.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/updateLocationFetchRequest:titleKeyPath:subtitleKeyPath:" title="updateLocationFetchRequest:titleKeyPath:subtitleKeyPath:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/updateLocationFetchRequest:titleKeyPath:subtitleKeyPath:">&ndash;&nbsp;updateLocationFetchRequest:titleKeyPath:subtitleKeyPath:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Updates the current fetch request to a new instance.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)updateLocationFetchRequest:(ABFLocationFetchRequest *)<em>fetchRequest</em> titleKeyPath:(NSString *)<em>titleKeyPath</em> subtitleKeyPath:(NSString *)<em>subtitleKeyPath</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>fetchRequest</code></th>
+						<td><p>a new instance of <a href="../Classes/ABFLocationFetchRequest.html">ABFLocationFetchRequest</a> (typical use case is to update the fetch request after the user moves the map)</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>titleKeyPath</code></th>
+						<td><p>the title key path on the Realm objects that correspond to the annotation title</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>subtitleKeyPath</code></th>
+						<td><p>the subtitle key path on the Realm objects that correspond to the annotation subtitle</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Updates the current fetch request to a new instance.</p><div class="warning"><p><strong>Warning:</strong> Must call <a href="#//api/name/performFetch">performFetch</a> or performClusteringFetchForVisibleMapRect:atZoomScale: after to trigger the fetch.</p></div>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ABFLocationFetchedResultsController.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
+						</div>
+						
+					</div>
+					
+					
+
+                    
+                    
+          
+				</main>
+
+				<footer>
+					<div class="footer-copyright">
+						
+						<p class="copyright">Copyright &copy; 2015 Realm. All rights reserved. Updated: 2015-06-10</p>
+						
+						
+						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1333)</a>.</p>
+						
+					</div>
+				</footer>
+			</div>
+		</div>
+	</article>
+
+	<script src="../js/script.js"></script>
+</body>
+</html>
