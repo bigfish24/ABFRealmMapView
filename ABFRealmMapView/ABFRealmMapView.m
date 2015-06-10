@@ -193,6 +193,7 @@ static NSString * const ABFAnnotationViewReuseId = @"ABFAnnotationViewReuseId";
         }
         
         annotationView.count = fetchedAnnotation.safeObjects.count;
+        annotationView.annotation = fetchedAnnotation;
         
         return annotationView;
     }
@@ -441,10 +442,8 @@ static NSString * const ABFAnnotationViewReuseId = @"ABFAnnotationViewReuseId";
         NSBlockOperation *refreshOperation = nil;
         
         MKMapRect visibleMapRect = self.visibleMapRect;
-        ABFZoomLevel zoomLevel = ABFZoomLevelForVisibleMapRect(visibleMapRect);
         
-        if (self.clusterAnnotations &&
-            zoomLevel < 17) {
+        if (self.clusterAnnotations) {
             
             MKZoomScale zoomScale = MKZoomScaleForMapView(self);
             
