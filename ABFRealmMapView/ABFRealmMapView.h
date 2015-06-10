@@ -10,6 +10,15 @@
 
 #import "ABFLocationFetchedResultsController.h"
 
+/**
+ *  The class creates a map interface to display annotations representing Realm object locations.
+ *
+ *  ABFRealmMapView inherits MKMapView and is editable from Interface Builder. Simply drag a MKMapView onto your Xib or Storyboard and replace the class with ABFRealmMapView.
+ *
+ *  The class will create a ABFLocationFetchedResultsController internally to manage retrieving Realm objects based on the current visible map rectangle. The Realm objects must contain a key path to latitude and longitude values.
+ *
+ *  The class will display annotations and uses the supplied title and subtitle key paths to create the annotation values. By default the class will cluster the annotations based on the zoom level.
+ */
 @interface ABFRealmMapView : MKMapView
 
 /**

@@ -312,8 +312,6 @@ extern ABFZoomLevel ABFZoomLevelForVisibleMapRect(MKMapRect visibleMapRect);
  *
  *  If a sort descriptor is specified then the resulting objects will be sorted by distance.
  *
- *  @see MKZoomScaleForMapView to calculate the zoom scale
- *
  *  @param visibleMapRect   the current visible map rect for the map view
  *  @param zoomScale        the map view's zoom scale (use MKZoomScaleForMapView)
  *

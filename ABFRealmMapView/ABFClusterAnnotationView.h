@@ -23,7 +23,7 @@
 /**
  *  The color of the cluster annotation
  *
- *  Default is [UIColor redColor]
+ *  Default is UIColor redColor
  */
 @property (nonatomic, strong) UIColor *color;
 
