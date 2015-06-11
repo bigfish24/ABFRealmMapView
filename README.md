@@ -4,6 +4,11 @@ The `ABFRealmMapView` class creates an interface object that inherits `MKMapView
 
 _**This allows for the creation of a map interface with as little as no code via Interface Builder!**_
 
+####Screenshot
+The demo app uses [RealmSFRestaurantData](https://github.com/bigfish24/RealmSFRestaurantData) to search through restaurants in San Francisco.
+
+![SF Restaurant Map View](/images/ABFRealmMapView.gif?raw=true "SF Restaurant Map View")
+
 ####Tutorial
 1. Add `MKMapView` to your Xib or storyboard and replace the class with `ABFRealmMapView`
 ![Add MKMapView to storyboard](/images/xcode-storyboard1.png?raw=true "Add MKMapView to storyboard")
@@ -22,11 +27,6 @@ it, simply add the following line to your Podfile:
 ```
 pod "ABFRealmMapView"
 ```
-
-####Screenshot
-The demo app uses [RealmSFRestaurantData](https://github.com/bigfish24/RealmSFRestaurantData) to search through restaurants in San Francisco.
-
-![SF Restaurant Map View](/images/ABFRealmMapView.gif?raw=true "SF Restaurant Map View")
 
 ####Demo
 
