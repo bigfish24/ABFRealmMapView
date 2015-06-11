@@ -63,7 +63,10 @@ static NSString *ABFGeoHashWithCoordinate(CLLocationCoordinate2D coordinate,
                                           NSUInteger precision)
 {
     if (precision > ABFMaxPrecision) {
-        NSString *exceptionString = [NSString stringWithFormat:@"Precision must be less than %lu",ABFMaxPrecision+1];
+        
+        NSInteger precisionLimit = ABFMaxPrecision + 1;
+        
+        NSString *exceptionString = [NSString stringWithFormat:@"Precision must be less than %lu",(unsigned long)precisionLimit];
         
         @throw [NSException exceptionWithName:@"ABFException" reason:exceptionString userInfo:nil];
     }
