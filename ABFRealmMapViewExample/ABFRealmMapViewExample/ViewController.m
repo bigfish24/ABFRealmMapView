@@ -31,7 +31,11 @@
     /**
      *  Set the Realm path to be the Restaurant Realm path
      */
-    self.mapView.realmPath = ABFRestaurantScoresPath();
+    
+    RLMRealmConfiguration *config = [RLMRealmConfiguration defaultConfiguration];
+    config.path = ABFRestaurantScoresPath();
+    
+    self.mapView.realmConfiguration = config;
     
     /**
      *  Set the cluster title format string

@@ -25,7 +25,7 @@ static NSString * const ABFAnnotationViewReuseId = @"ABFAnnotationViewReuseId";
 @end
 
 @implementation ABFRealmMapView
-@synthesize realmPath = _realmPath;
+@synthesize realmConfiguration = _realmConfiguration;
 
 #pragma mark - Init
 
@@ -40,7 +40,7 @@ static NSString * const ABFAnnotationViewReuseId = @"ABFAnnotationViewReuseId";
     
     if (self) {
         _entityName = entityName;
-        _realmPath = realm.path;
+        _realmConfiguration = realm.configuration;
         _latitudeKeyPath = latitudeKeyPath;
         _longitudeKeyPath = longitudeKeyPath;
         _titleKeyPath = titleKeyPath;
@@ -356,10 +356,10 @@ static NSString * const ABFAnnotationViewReuseId = @"ABFAnnotationViewReuseId";
     }
 }
 
-- (void)setRealmPath:(NSString *)realmPath
+- (void)setRealmConfiguration:(RLMRealmConfiguration *)realmConfiguration
 {
     @synchronized(self) {
-        _realmPath = realmPath;
+        _realmConfiguration = realmConfiguration;
     }
 }
 
@@ -402,20 +402,20 @@ static NSString * const ABFAnnotationViewReuseId = @"ABFAnnotationViewReuseId";
 
 - (RLMRealm *)realm
 {
-    if (self.realmPath) {
-        return [RLMRealm realmWithPath:self.realmPath];
+    if (self.realmConfiguration) {
+        return [RLMRealm realmWithConfiguration:self.realmConfiguration error:nil];
     }
     
     return [RLMRealm defaultRealm];
 }
 
-- (NSString *)realmPath
+- (RLMRealmConfiguration *)realmConfiguration
 {
-    if (_realmPath) {
-        return _realmPath;
+    if (_realmConfiguration) {
+        return _realmConfiguration;
     }
     
-    return [RLMRealm defaultRealmPath];
+    return [RLMRealmConfiguration defaultConfiguration];
 }
 
 #pragma mark - Public Instance

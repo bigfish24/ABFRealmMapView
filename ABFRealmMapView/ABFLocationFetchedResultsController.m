@@ -430,7 +430,7 @@ static NSUInteger ABFClusterSizeForZoomLevel(ABFZoomLevel zoomLevel)
 
 #pragma mark - Private Instance
 
-- (NSArray *)safeObjectsFromFetchResults:(RLMResults *)fetchResults
+- (NSArray *)safeObjectsFromFetchResults:(id<RLMCollection>)fetchResults
 {
     NSMutableArray *safeObjects = [NSMutableArray arrayWithCapacity:fetchResults.count];
     

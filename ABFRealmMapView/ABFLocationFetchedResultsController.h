@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <RBQFetchedResultsController/RBQSafeRealmObject.h>
+#import <RBQSafeRealmObject.h>
 
 #import "ABFLocationFetchRequest.h"
 

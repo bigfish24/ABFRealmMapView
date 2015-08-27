@@ -34,7 +34,7 @@
 /**
  *  The path for the Realm which contains the entities being fetch
  */
-@property (nonatomic, strong) NSString *realmPath;
+@property (nonatomic, strong) RLMRealmConfiguration *realmConfiguration;
 
 /**
  *  The internal controller that fetches the Realm objects
