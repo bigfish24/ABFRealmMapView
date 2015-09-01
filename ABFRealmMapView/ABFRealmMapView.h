@@ -83,6 +83,14 @@
 @property (nonatomic, assign) IBInspectable BOOL autoRefresh;
 
 /**
+ *  Designates if the map view will zoom to a region that contains all points
+ *  on the first refresh of the map annotations (presumably on viewWillAppear)
+ *
+ *  Default is YES
+ */
+@property (nonatomic, assign) IBInspectable BOOL zoomOnFirstRefresh;
+
+/**
  *  Creates a map view that automatically handles fetching Realm objects and displaying annotations
  *
  *  @param entityName       the class name for the Realm objects to fetch

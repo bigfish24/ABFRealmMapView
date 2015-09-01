@@ -98,6 +98,7 @@ static NSString * const ABFAnnotationViewReuseId = @"ABFAnnotationViewReuseId";
     
     _clusterAnnotations = YES;
     _autoRefresh = YES;
+    _zoomOnFirstRefresh = YES;
     
     _mapQueue = [[NSOperationQueue alloc] init];
     _mapQueue.maxConcurrentOperationCount = 1;
@@ -508,10 +509,24 @@ static NSString * const ABFAnnotationViewReuseId = @"ABFAnnotationViewReuseId";
     
     [toRemove minusSet:newAnnotations];
     
+    NSArray *safeObjects = self.fetchResultsController.safeObjects;
+    
     // Trigger display on map view
     [[NSOperationQueue mainQueue] addOperationWithBlock:^() {
-        [weakSelf addAnnotations:[toAdd allObjects]];
-        [weakSelf removeAnnotations:[toRemove allObjects]];
+        
+        // Trigger zoom on first run if necessary
+        if (weakSelf.zoomOnFirstRefresh &&
+            safeObjects.count > 0) {
+            weakSelf.zoomOnFirstRefresh = NO;
+            
+            MKCoordinateRegion region = [weakSelf coordinateRegionForSafeObjects:safeObjects];
+            
+            [weakSelf setRegion:region animated:YES];
+        }
+        else {
+            [weakSelf addAnnotations:[toAdd allObjects]];
+            [weakSelf removeAnnotations:[toRemove allObjects]];
+        }
     }];
 }
 
@@ -528,6 +543,26 @@ static NSString * const ABFAnnotationViewReuseId = @"ABFAnnotationViewReuseId";
                          view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0, 1.0);
                      }
                      completion:nil];
+}
+
+- (MKCoordinateRegion)coordinateRegionForSafeObjects:(NSArray *)safeObjects
+{
+    MKMapRect rect = MKMapRectNull;
+    
+    for (ABFLocationSafeRealmObject *safeObject in safeObjects) {
+        MKMapPoint point = MKMapPointForCoordinate(safeObject.coordinate);
+        
+        rect = MKMapRectUnion(rect, MKMapRectMake(point.x, point.y, 0, 0));
+    }
+    
+    MKCoordinateRegion region = MKCoordinateRegionForMapRect(rect);
+    
+    region = [self regionThatFits:region];
+    
+    region.span.latitudeDelta *= 1.3;
+    region.span.longitudeDelta *= 1.3;
+    
+    return region;
 }
 
 @end

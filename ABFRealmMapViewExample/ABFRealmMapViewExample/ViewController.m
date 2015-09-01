@@ -55,8 +55,6 @@
 {
     [super viewDidAppear:animated];
     
-    [self moveMapToRealmHeadquarters];
-    
     [self.mapView refreshMapView];
 }
 
@@ -93,15 +91,6 @@
     else if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse) {
         self.mapView.showsUserLocation = YES;
     }
-}
-
-- (void)moveMapToRealmHeadquarters
-{
-    CLLocationCoordinate2D realmHeadquarters = CLLocationCoordinate2DMake(37.7799247, -122.3919823);
-    
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(realmHeadquarters, 1000, 1000);
-    
-    [self.mapView setRegion:region animated:NO];
 }
 
 @end
