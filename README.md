@@ -21,11 +21,16 @@ The demo app uses [RealmSFRestaurantData](https://github.com/bigfish24/RealmSFRe
 _**3. That's It!**_
 
 ####Documentation
-[Click Here](http://htmlpreview.github.io/?https://raw.githubusercontent.com/bigfish24/ABFRealmMapView/master/Documentation/html/index.html)
+**Objective-C**
+[Click Here](http://htmlpreview.github.io/?https://raw.githubusercontent.com/bigfish24/ABFRealmMapView/master/Documentation/ObjcDocs/index.html)
+
+**Swift**
+[Click Here](http://htmlpreview.github.io/?https://raw.githubusercontent.com/bigfish24/ABFRealmMapView/master/Documentation/SwiftDocs/index.html)
 
 ####Installation
 `ABFRealmMapView` is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
+
 **Objective-C**
 ```
 pod 'ABFRealmMapView'
@@ -38,6 +43,7 @@ pod 'RealmMapView'
 ####Demo
 
 Build and run/test the Example project in Xcode to see `ABFRealmMapView` in action. This project uses CocoaPods. If you don't have [CocoaPods](http://cocoapods.org/) installed, grab it with [sudo] gem install cocoapods.
+
 **Objective-C**
 ```
 git clone https://github.com/bigfish24/ABFRealmMapView.git
@@ -45,7 +51,7 @@ cd ABFRealmMapView/ABFRealmMapViewExample
 pod install
 open ABFRealmMapView.xcworkspace
 ```
-######Requirements
+#####Requirements
 * iOS 7+
 * Xcode 6
 
