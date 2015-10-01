@@ -95,11 +95,9 @@ public class RealmMapView: MKMapView {
                 let zoomScale = MKZoomScaleForMapView(self)
                 
                 refreshOperation = NSBlockOperation(block: { [weak self] () -> Void in
+                    self?.fetchedResultsController.performClusteringFetchForVisibleMapRect(visibleMapRect, zoomScale: zoomScale)
                     
                     if let annotations = self?.fetchedResultsController.annotations {
-                        self?.fetchedResultsController.performClusteringFetchForVisibleMapRect(visibleMapRect, zoomScale: zoomScale)
-                        
-                        
                         self?.addAnnotationsToMapView(annotations)
                     }
                 })
