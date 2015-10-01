@@ -4,7 +4,7 @@ The `ABFRealmMapView` class creates an interface object that inherits `MKMapView
 
 _**This allows for the creation of a map interface with as little as no code via Interface Builder!**_
 
-Realm Swift support was added in version 1.3 with an identical API.
+Realm Swift support was added in version 1.4 with an identical API.
 
 ####Screenshot
 The demo app uses [RealmSFRestaurantData](https://github.com/bigfish24/RealmSFRestaurantData) to search through restaurants in San Francisco.
