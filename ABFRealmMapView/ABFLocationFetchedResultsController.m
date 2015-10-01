@@ -329,6 +329,8 @@ static NSUInteger ABFClusterSizeForZoomLevel(ABFZoomLevel zoomLevel)
         _titleKeyPath = titleKeyPath;
         _subtitleKeyPath = subtitleKeyPath;
         _clusterTitleFormatString = @"$OBJECTSCOUNT objects in this area";
+        _safeObjects = [[NSArray alloc] init];
+        _annotations = [[NSSet alloc] init];
     }
     
     return self;

@@ -25,6 +25,6 @@
  *
  *  Default is UIColor redColor
  */
-@property (nonatomic, strong) UIColor *color;
+@property (nonatomic, strong, nonnull) UIColor *color;
 
 @end

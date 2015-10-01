@@ -33,12 +33,12 @@ extern const double ABFNoDistance;
 /**
  *  The title of the object
  */
-@property (nonatomic, readonly) NSString *title;
+@property (nonatomic, readonly, nonnull) NSString *title;
 
 /**
  *  The subtitle of the object
  */
-@property (nonatomic, readonly) NSString *subtitle;
+@property (nonatomic, readonly, nonnull) NSString *subtitle;
 
 /**
  *  Transient property used to perform distance sorting.
@@ -57,11 +57,10 @@ extern const double ABFNoDistance;
  *
  *  @return instance of ABFLoationSafeRealmObject
  */
-+ (instancetype)safeLocationObjectFromObject:(RLMObject *)object
-                                  coordinate:(CLLocationCoordinate2D)coordinate
-                                       title:(NSString *)title
-                                    subtitle:(NSString *)subtitle;
-
++ (nonnull instancetype)safeLocationObjectFromObject:(nonnull RLMObject *)object
+                                          coordinate:(CLLocationCoordinate2D)coordinate
+                                               title:(nullable NSString *)title
+                                            subtitle:(nullable NSString *)subtitle;
 @end
 
 /**
@@ -99,12 +98,12 @@ typedef NS_ENUM(NSUInteger, ABFAnnotationType){
  *
  *  @see ABFLocationFetchedResultsController clusterTitleFormatString
  */
-@property (nonatomic, readonly, copy) NSString *title;
+@property (nonatomic, readonly, copy, nonnull) NSString *title;
 
 /**
  *  The subtitle for the annotation. If the annotation is a cluster then this will be nil.
  */
-@property (nonatomic, readonly, copy) NSString *subtitle;
+@property (nonatomic, readonly, copy, nullable) NSString *subtitle;
 
 /**
  *  The type of annotation.
@@ -118,7 +117,7 @@ typedef NS_ENUM(NSUInteger, ABFAnnotationType){
  *
  *  If type is ABFAnnotationTypeUnique, then this array will contain only 1 safe object.
  */
-@property (nonatomic, readonly) NSArray *safeObjects;
+@property (nonatomic, readonly, nonnull) NSArray<ABFLocationSafeRealmObject *> *safeObjects;
 
 /**
  *  Creates an instance of ABFAnnotation for a given type
@@ -127,7 +126,7 @@ typedef NS_ENUM(NSUInteger, ABFAnnotationType){
  *
  *  @return instance of ABFAnnotationType
  */
-+ (instancetype)annotationWithType:(ABFAnnotationType)type;
++ (nonnull instancetype)annotationWithType:(ABFAnnotationType)type;
 
 /**
  *  KVO compliant setter for coordinate
@@ -141,14 +140,14 @@ typedef NS_ENUM(NSUInteger, ABFAnnotationType){
  *
  *  @param title new title for the annotation
  */
-- (void)setTitle:(NSString *)title;
+- (void)setTitle:(nonnull NSString *)title;
 
 /**
  *  KVO compliant setter for subtitle
  *
  *  @param subtitle new subtitle for the annotation
  */
-- (void)setSubtitle:(NSString *)subtitle;
+- (void)setSubtitle:(nonnull NSString *)subtitle;
 
 @end
 
@@ -162,7 +161,7 @@ typedef NS_ENUM(NSUInteger, ABFAnnotationType){
 /**
  *  The center location to calculate relative distances from.
  */
-@property (nonatomic, readonly) CLLocation *location;
+@property (nonatomic, readonly, nonnull) CLLocation *location;
 
 /**
  *  The sort order. Objects will be sorted by distance to center coordinate.
@@ -177,14 +176,14 @@ typedef NS_ENUM(NSUInteger, ABFAnnotationType){
  *
  *  @return an instance of ABFLocationSortDescriptor
  */
-+ (instancetype)sortDescriptorWithCenterCoordinate:(CLLocationCoordinate2D)centerCoordinate nearestFirst:(BOOL)nearestFirst;
++ (nonnull instancetype)sortDescriptorWithCenterCoordinate:(CLLocationCoordinate2D)centerCoordinate nearestFirst:(BOOL)nearestFirst;
 
 /**
  *  Returns a new instance of ABFLocationSortDescriptor that has a reversed sort order.
  *
  *  @return an instance of ABFLocationSortDescriptor
  */
-- (instancetype)reverseSort;
+- (nonnull instancetype)reverseSort;
 
 @end
 
@@ -204,7 +203,9 @@ typedef NSUInteger ABFZoomLevel;
  *
  *  @return MKZoomScale that represents the zoom level at the current map view state
  */
+NS_ASSUME_NONNULL_BEGIN
 extern MKZoomScale MKZoomScaleForMapView(MKMapView *mapView);
+NS_ASSUME_NONNULL_END
 
 /**
  *  Calculates the ABFZoomLevel based on a given visble map rect
@@ -235,21 +236,21 @@ extern ABFZoomLevel ABFZoomLevelForVisibleMapRect(MKMapRect visibleMapRect);
  *
  *  @see ABFLocationFetchRequest
  */
-@property (nonatomic, readonly) ABFLocationFetchRequest *fetchRequest;
+@property (nonatomic, readonly, nonnull) ABFLocationFetchRequest *fetchRequest;
 
 /**
  *  Specify a sort descriptor to sort the objects by distance.
  *
  *  @see ABFLocationSortDescriptor
  */
-@property (nonatomic, strong) ABFLocationSortDescriptor *sortDescriptor;
+@property (nonatomic, strong, nullable) ABFLocationSortDescriptor *sortDescriptor;
 
 /**
  *  An array of ABFLocationSafeRealmObject(s) representing the objects found in the fetch.
  *
  *  If sort descriptor was specified then the objects will be sorted by distance.
  */
-@property (nonatomic, readonly) NSArray *safeObjects;
+@property (nonatomic, readonly, nonnull) NSArray<ABFLocationSafeRealmObject *> *safeObjects;
 
 /**
  *  Collection of ABFAnnotations representing the objects in the fetch.
@@ -257,17 +258,17 @@ extern ABFZoomLevel ABFZoomLevelForVisibleMapRect(MKMapRect visibleMapRect);
  *  If performClusteringFetchForVisibleMapRect:atZoomScale: was called then the 
  *  annotations will be clusters of objects
  */
-@property (nonatomic, readonly) NSSet *annotations;
+@property (nonatomic, readonly, nonnull) NSSet<ABFAnnotation *> *annotations;
 
 /**
  *  The title key path on the Realm objects that correspond to the annotation title
  */
-@property (nonatomic, readonly) NSString *titleKeyPath;
+@property (nonatomic, readonly, nonnull) NSString *titleKeyPath;
 
 /**
  *  The subtitle key path on the Realm objects that correspond to the annotation subtitle
  */
-@property (nonatomic, readonly) NSString *subtitleKeyPath;
+@property (nonatomic, readonly, nonnull) NSString *subtitleKeyPath;
 
 /**
  *  If clustering fetch is performed, the title of the annotations with multiple objects will be computed.
@@ -278,7 +279,7 @@ extern ABFZoomLevel ABFZoomLevelForVisibleMapRect(MKMapRect visibleMapRect);
  *
  *  @see ABFAnnotation title
  */
-@property (nonatomic, strong) NSString *clusterTitleFormatString;
+@property (nonatomic, strong, nullable) NSString *clusterTitleFormatString;
 
 /**
  *  Creates an instance of ABFLocationFetchedResultsController. 
@@ -294,9 +295,9 @@ extern ABFZoomLevel ABFZoomLevelForVisibleMapRect(MKMapRect visibleMapRect);
  *
  *  @return instance of ABFLocationFetchedResultsController
  */
-- (instancetype)initWithLocationFetchRequest:(ABFLocationFetchRequest *)fetchRequest
-                                titleKeyPath:(NSString *)titleKeyPath
-                             subtitleKeyPath:(NSString *)subtitleKeyPath;
+- (nonnull instancetype)initWithLocationFetchRequest:(nonnull ABFLocationFetchRequest *)fetchRequest
+                                        titleKeyPath:(nonnull NSString *)titleKeyPath
+                                     subtitleKeyPath:(nonnull NSString *)subtitleKeyPath;
 
 /**
  *  Performs a fetch using the current fetch request.
@@ -329,8 +330,8 @@ extern ABFZoomLevel ABFZoomLevelForVisibleMapRect(MKMapRect visibleMapRect);
  *  @param titleKeyPath    the title key path on the Realm objects that correspond to the annotation title
  *  @param subtitleKeyPath the subtitle key path on the Realm objects that correspond to the annotation subtitle
  */
-- (void)updateLocationFetchRequest:(ABFLocationFetchRequest *)fetchRequest
-                      titleKeyPath:(NSString *)titleKeyPath
-                   subtitleKeyPath:(NSString *)subtitleKeyPath;
+- (void)updateLocationFetchRequest:(nonnull ABFLocationFetchRequest *)fetchRequest
+                      titleKeyPath:(nonnull NSString *)titleKeyPath
+                   subtitleKeyPath:(nonnull NSString *)subtitleKeyPath;
 
 @end

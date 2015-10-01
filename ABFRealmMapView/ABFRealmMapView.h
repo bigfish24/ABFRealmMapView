@@ -29,44 +29,44 @@
  *  @see realmPath
  *  @see initWithEntityName:inRealm:latitudeKeyPath:longitudeKeyPath:titleKeypath:subtitleKeyPath:
  */
-@property (nonatomic, readonly) RLMRealm *realm;
+@property (nonatomic, readonly, nonnull) RLMRealm *realm;
 
 /**
- *  The path for the Realm which contains the entities being fetch
+ *  The configuration for the Realm in which the entity resides
  */
-@property (nonatomic, strong) RLMRealmConfiguration *realmConfiguration;
+@property (nonatomic, strong, nullable) RLMRealmConfiguration *realmConfiguration;
 
 /**
  *  The internal controller that fetches the Realm objects
  *
  *  @see ABFLocationFetchedResultsController clusterTitleFormatString to localize the subtitle string
  */
-@property (nonatomic, readonly) ABFLocationFetchedResultsController *fetchResultsController;
+@property (nonatomic, readonly, nonnull) ABFLocationFetchedResultsController *fetchResultsController;
 
 /**
  *  The Realm object's name being fetched for the map view
  */
-@property (nonatomic, strong) IBInspectable NSString *entityName;
+@property (nonatomic, strong, nullable) IBInspectable NSString *entityName;
 
 /**
  *  The key path on fetched Realm objects for the latitude value
  */
-@property (nonatomic, strong) IBInspectable NSString *latitudeKeyPath;
+@property (nonatomic, strong, nullable) IBInspectable NSString *latitudeKeyPath;
 
 /**
  *  The key path on fetched Realm objects for the longitude value
  */
-@property (nonatomic, strong) IBInspectable NSString *longitudeKeyPath;
+@property (nonatomic, strong, nullable) IBInspectable NSString *longitudeKeyPath;
 
 /**
  *  The key path on fetched Realm objects for the title of the annotation view
  */
-@property (nonatomic, strong) IBInspectable NSString *titleKeyPath;
+@property (nonatomic, strong, nullable) IBInspectable NSString *titleKeyPath;
 
 /**
  *  The key path on fetched Realm objects for the subtitle of the annotation view
  */
-@property (nonatomic, strong) IBInspectable NSString *subtitleKeyPath;
+@property (nonatomic, strong, nullable) IBInspectable NSString *subtitleKeyPath;
 
 /**
  *  Designates if the map view will cluster the annotations
@@ -102,12 +102,12 @@
  *
  *  @return instance of ABFRealmMapView
  */
-- (instancetype)initWithEntityName:(NSString *)entityName
-                           inRealm:(RLMRealm *)realm
-                   latitudeKeyPath:(NSString *)latitudeKeyPath
-                  longitudeKeyPath:(NSString *)longitudeKeyPath
-                      titleKeypath:(NSString *)titleKeyPath
-                   subtitleKeyPath:(NSString *)subtitleKeyPath;
+- (nonnull instancetype)initWithEntityName:(nonnull NSString *)entityName
+                                   inRealm:(nonnull RLMRealm *)realm
+                           latitudeKeyPath:(nonnull NSString *)latitudeKeyPath
+                          longitudeKeyPath:(nonnull NSString *)longitudeKeyPath
+                              titleKeypath:(nonnull NSString *)titleKeyPath
+                           subtitleKeyPath:(nonnull NSString *)subtitleKeyPath;
 
 /**
  *  Performs a fresh fetch for Realm objects based on the current visible map rect

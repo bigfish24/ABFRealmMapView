@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Adam Fish. All rights reserved.
 //
 
-#import "RBQFetchRequest.h"
+#import <RBQFetchedResultsController/RBQFetchRequest.h>
 
 @import MapKit;
 
@@ -21,9 +21,11 @@
  *
  *  @return instance of NSPredicate (can be NSCompoundPredicate, see description for more info)
  */
+NS_ASSUME_NONNULL_BEGIN
 extern NSPredicate * NSPredicateForCoordinateRegion(MKCoordinateRegion region,
                                                     NSString *latitudeKeyPath,
                                                     NSString *longitudeKeyPath);
+NS_ASSUME_NONNULL_END
 
 /**
  *  Location specific subclass of RBQFetchRequest that allows for location fetching on Realm objects that contain latitude and longitude values.
@@ -35,12 +37,12 @@ extern NSPredicate * NSPredicateForCoordinateRegion(MKCoordinateRegion region,
 /**
  *  Latitude key path on the Realm object for entityName
  */
-@property (nonatomic, readonly) NSString *latitudeKeyPath;
+@property (nonatomic, readonly, nonnull) NSString *latitudeKeyPath;
 
 /**
  *  Longitude key path on the Realm object for entityName
  */
-@property (nonatomic, readonly) NSString *longitudeKeyPath;
+@property (nonatomic, readonly, nonnull) NSString *longitudeKeyPath;
 
 /**
  *  Region that defines the fetch boundaries
@@ -58,10 +60,9 @@ extern NSPredicate * NSPredicateForCoordinateRegion(MKCoordinateRegion region,
  *
  *  @return an instance of ABFLocationFetchRequest that contains the NSPredicate for the fetch
  */
-+ (instancetype)locationFetchRequestWithEntityName:(NSString *)entityName
-                                           inRealm:(RLMRealm *)realm
-                                   latitudeKeyPath:(NSString *)latitudeKeyPath
-                                  longitudeKeyPath:(NSString *)longitudeKeyPath
-                                         forRegion:(MKCoordinateRegion)region;
-
++ (nonnull instancetype)locationFetchRequestWithEntityName:(nonnull NSString *)entityName
+                                                   inRealm:(nonnull RLMRealm *)realm
+                                           latitudeKeyPath:(nonnull NSString *)latitudeKeyPath
+                                          longitudeKeyPath:(nonnull NSString *)longitudeKeyPath
+                                                 forRegion:(MKCoordinateRegion)region;
 @end
