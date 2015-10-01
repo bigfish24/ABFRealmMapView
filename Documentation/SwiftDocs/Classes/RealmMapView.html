@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>RealmMapView Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/RealmMapView" class="dashAnchor"></a>
+    <a title="RealmMapView Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">ReamMapView Docs</a> (100% documented)</p>
+        <p class="header-right"><a href="https://github.com/bigfish24/ABFRealmMapView"><img src="../img/gh.png"/>View on GitHub</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">ReamMapView Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        RealmMapView Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+          <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/RealmMapView.html">RealmMapView</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+          <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions.html#/s:C19RealmMapViewExample12RealmMapView">RealmMapView</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>RealmMapView</h1>
+              <div class="declaration">
+                <div class="Swift">
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">RealmMapView</span><span class="p">:</span> <span class="kt">MKMapView</span></code></pre>
+
+                </div>
+              </div>
+            <p>The RealmMapView class creates an interface object that inherits MKMapView and manages fetching and displaying annotations for a Realm Swift object class that contains coordinate data.</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+                <div class="task-name-container">
+                  <a name="/Properties"></a>
+                  <a name="//apple_ref/swift/Section/Properties" class="dashAnchor"></a>
+                  <a href="#/Properties">
+                    <h3 class="section-name">Properties</h3>
+                  </a>
+                </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC19RealmMapViewExample12RealmMapView18realmConfigurationERR"></a>
+                    <a name="//apple_ref/swift/Property/realmConfiguration" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC19RealmMapViewExample12RealmMapView18realmConfigurationERR">realmConfiguration</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The configuration for the Realm in which the entity resides</p>
+
+<p>Default is [RLMRealmConfiguration defaultConfiguration]</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">realmConfiguration</span><span class="p">:</span> <span class="kt">Realm</span><span class="o">.</span><span class="kt">Configuration</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC19RealmMapViewExample12RealmMapView5realmERR"></a>
+                    <a name="//apple_ref/swift/Property/realm" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC19RealmMapViewExample12RealmMapView5realmERR">realm</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The Realm in which the given entity resides in</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">realm</span><span class="p">:</span> <span class="kt">Realm</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC19RealmMapViewExample12RealmMapView24fetchedResultsControllerERR"></a>
+                    <a name="//apple_ref/swift/Property/fetchedResultsController" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC19RealmMapViewExample12RealmMapView24fetchedResultsControllerERR">fetchedResultsController</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The internal controller that fetches the Realm objects</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">fetchedResultsController</span><span class="p">:</span> <span class="kt">ABFLocationFetchedResultsController</span> <span class="o">=</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC19RealmMapViewExample12RealmMapView10entityNameGSqSS_"></a>
+                    <a name="//apple_ref/swift/Property/entityName" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC19RealmMapViewExample12RealmMapView10entityNameGSqSS_">entityName</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The Realm object&rsquo;s name being fetched for the map view</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">@IBInspectable</span> <span class="kd">public</span> <span class="k">var</span> <span class="nv">entityName</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC19RealmMapViewExample12RealmMapView15latitudeKeyPathGSqSS_"></a>
+                    <a name="//apple_ref/swift/Property/latitudeKeyPath" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC19RealmMapViewExample12RealmMapView15latitudeKeyPathGSqSS_">latitudeKeyPath</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The key path on fetched Realm objects for the latitude value</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">@IBInspectable</span> <span class="kd">public</span> <span class="k">var</span> <span class="nv">latitudeKeyPath</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC19RealmMapViewExample12RealmMapView16longitudeKeyPathGSqSS_"></a>
+                    <a name="//apple_ref/swift/Property/longitudeKeyPath" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC19RealmMapViewExample12RealmMapView16longitudeKeyPathGSqSS_">longitudeKeyPath</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The key path on fetched Realm objects for the longitude value</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">@IBInspectable</span> <span class="kd">public</span> <span class="k">var</span> <span class="nv">longitudeKeyPath</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC19RealmMapViewExample12RealmMapView12titleKeyPathGSqSS_"></a>
+                    <a name="//apple_ref/swift/Property/titleKeyPath" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC19RealmMapViewExample12RealmMapView12titleKeyPathGSqSS_">titleKeyPath</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The key path on fetched Realm objects for the title of the annotation view</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">@IBInspectable</span> <span class="kd">public</span> <span class="k">var</span> <span class="nv">titleKeyPath</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC19RealmMapViewExample12RealmMapView15subtitleKeyPathGSqSS_"></a>
+                    <a name="//apple_ref/swift/Property/subtitleKeyPath" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC19RealmMapViewExample12RealmMapView15subtitleKeyPathGSqSS_">subtitleKeyPath</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The key path on fetched Realm objects for the subtitle of the annotation view</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">@IBInspectable</span> <span class="kd">public</span> <span class="k">var</span> <span class="nv">subtitleKeyPath</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC19RealmMapViewExample12RealmMapView18clusterAnnotationsSb"></a>
+                    <a name="//apple_ref/swift/Property/clusterAnnotations" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC19RealmMapViewExample12RealmMapView18clusterAnnotationsSb">clusterAnnotations</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Designates if the map view will cluster the annotations</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">@IBInspectable</span> <span class="kd">public</span> <span class="k">var</span> <span class="nv">clusterAnnotations</span> <span class="o">=</span> <span class="kc">true</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC19RealmMapViewExample12RealmMapView11autoRefreshSb"></a>
+                    <a name="//apple_ref/swift/Property/autoRefresh" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC19RealmMapViewExample12RealmMapView11autoRefreshSb">autoRefresh</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Designates if the map view automatically refreshes when the map moves</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">@IBInspectable</span> <span class="kd">public</span> <span class="k">var</span> <span class="nv">autoRefresh</span> <span class="o">=</span> <span class="kc">true</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC19RealmMapViewExample12RealmMapView18zoomOnFirstRefreshSb"></a>
+                    <a name="//apple_ref/swift/Property/zoomOnFirstRefresh" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC19RealmMapViewExample12RealmMapView18zoomOnFirstRefreshSb">zoomOnFirstRefresh</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Designates if the map view will zoom to a region that contains all points
+on the first refresh of the map annotations (presumably on viewWillAppear)</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">@IBInspectable</span> <span class="kd">public</span> <span class="k">var</span> <span class="nv">zoomOnFirstRefresh</span> <span class="o">=</span> <span class="kc">true</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+                <div class="task-name-container">
+                  <a name="/Functions"></a>
+                  <a name="//apple_ref/swift/Section/Functions" class="dashAnchor"></a>
+                  <a href="#/Functions">
+                    <h3 class="section-name">Functions</h3>
+                  </a>
+                </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC19RealmMapViewExample12RealmMapView14refreshMapViewFS0_FT_T_"></a>
+                    <a name="//apple_ref/swift/Method/refreshMapView()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC19RealmMapViewExample12RealmMapView14refreshMapViewFS0_FT_T_">refreshMapView()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Performs a fresh fetch for Realm objects based on the current visible map rect</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">refreshMapView</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2015 <a class="link" href="http://www.realm.io" target="_blank" rel="external">Adam Fish</a>. All rights reserved. (Last updated: 2015-10-01)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.3.1</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

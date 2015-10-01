@@ -9,6 +9,9 @@
 import MapKit
 import RealmSwift
 
+/**
+The RealmMapView class creates an interface object that inherits MKMapView and manages fetching and displaying annotations for a Realm Swift object class that contains coordinate data.
+*/
 public class RealmMapView: MKMapView {
     // MARK: Properties
     
@@ -239,11 +242,11 @@ public class RealmMapView: MKMapView {
     }
 }
 
-extension ABFLocationSafeRealmObject {
-    
-}
+/**
+Delegate proxy that allows the controller to trigger auto refresh and then rebroadcast to main delegate.
 
-// MARK: Delegate Proxy
+:nodoc:
+*/
 extension RealmMapView: MKMapViewDelegate {
     public func mapView(mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
         self.externalDelegate?.mapView?(mapView, regionWillChangeAnimated: animated)
