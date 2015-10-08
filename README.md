@@ -1,10 +1,14 @@
 # ABFRealmMapView
 
-The `ABFRealmMapView` class creates an interface object that inherits `MKMapView` and manages real-time fetching and displaying annotations for a Realm object class that contains coordinate data. In addition, by default the map view clusters annotations based on zoom level.
+The `ABFRealmMapView` class creates an interface object that inherits `MKMapView` and manages real-time fetching and displaying annotations for a [Realm](http://www.realm.io) object class that contains coordinate data. In addition, by default the map view clusters annotations based on zoom level.
 
 _**This allows for the creation of a map interface with as little as no code via Interface Builder!**_
 
-Realm Swift support was added in version 1.4 with an identical API.
+[Realm Swift](https://realm.io/docs/swift/latest/) support was added in version 1.4 with an identical API.
+
+_Did you find this library and haven't heard of Realm?_
+
+The quick overview is that Realm is a replacement to Core Data or SQLite. It is extremely fast (enabling the instant map searching and clustering) and free to use. For more details head over to [Realm.io](http://www.realm.io)
 
 ####Screenshot
 The demo app uses [RealmSFRestaurantData](https://github.com/bigfish24/RealmSFRestaurantData) to search through restaurants in San Francisco.
@@ -19,6 +23,8 @@ The demo app uses [RealmSFRestaurantData](https://github.com/bigfish24/RealmSFRe
 ![Add MKMapView to storyboard](/images/xcode-storyboard2.png?raw=true "Add MKMapView to storyboard")
 
 _**3. That's It!**_
+
+If you still have questions, a slightly longer tutorial is available [here](https://realm.io/news/building-an-ios-clustered-map-view-in-objective-c/)
 
 ####Documentation
 **Objective-C**
