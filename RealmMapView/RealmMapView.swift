@@ -281,8 +281,8 @@ extension RealmMapView: MKMapViewDelegate {
     
     public func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         
-        if let delegate = self.externalDelegate {
-            return delegate.mapView?(mapView, viewForAnnotation: annotation)
+        if let delegate = self.externalDelegate, let method = delegate.mapView?(mapView, viewForAnnotation: annotation) {
+            return method
         }
         else if let fetchedAnnotation = annotation as? ABFAnnotation {
             
@@ -305,8 +305,8 @@ extension RealmMapView: MKMapViewDelegate {
     
     public func mapView(mapView: MKMapView, didAddAnnotationViews views: [MKAnnotationView]) {
         
-        if let delegate = self.externalDelegate {
-            delegate.mapView?(mapView, didAddAnnotationViews: views)
+        if let delegate = self.externalDelegate, let method = delegate.mapView?(mapView, didAddAnnotationViews: views) {
+            method
         }
         else {
             for view in views {
