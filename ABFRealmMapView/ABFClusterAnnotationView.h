@@ -27,4 +27,11 @@
  */
 @property (nonatomic, strong, nonnull) UIColor *color;
 
+/**
+ *  The label that displays the count.
+ *
+ *  Default font is bold system font at size 12 with white color.
+ */
+@property (nonatomic, readonly, nonnull) UILabel *countLabel;
+
 @end

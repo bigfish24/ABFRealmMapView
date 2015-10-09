@@ -39,8 +39,6 @@ static CGFloat ABFScaledValueForValue(CGFloat value)
 
 @interface ABFClusterAnnotationView()
 
-@property (strong, nonatomic) UILabel *countLabel;
-
 @end
 
 @implementation ABFClusterAnnotationView
@@ -62,25 +60,25 @@ static CGFloat ABFScaledValueForValue(CGFloat value)
 
 - (void)setupLabel
 {
-    self.countLabel = [[UILabel alloc] initWithFrame:self.frame];
+    _countLabel = [[UILabel alloc] initWithFrame:self.frame];
     
-    self.countLabel.backgroundColor = [UIColor clearColor];
+    _countLabel.backgroundColor = [UIColor clearColor];
     
-    self.countLabel.textColor = [UIColor whiteColor];
+    _countLabel.textColor = [UIColor whiteColor];
     
-    self.countLabel.textAlignment = NSTextAlignmentCenter;
+    _countLabel.textAlignment = NSTextAlignmentCenter;
     
-    self.countLabel.shadowColor = [UIColor clearColor];
+    _countLabel.shadowColor = [UIColor clearColor];
     
-    self.countLabel.adjustsFontSizeToFitWidth = YES;
+    _countLabel.adjustsFontSizeToFitWidth = YES;
     
-    self.countLabel.numberOfLines = 1;
+    _countLabel.numberOfLines = 1;
     
-    self.countLabel.font = [UIFont boldSystemFontOfSize:12];
+    _countLabel.font = [UIFont boldSystemFontOfSize:12];
     
-    self.countLabel.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
+    _countLabel.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
     
-    [self addSubview:self.countLabel];
+    [self addSubview:_countLabel];
 }
 
 #pragma mark - Setters
@@ -101,9 +99,9 @@ static CGFloat ABFScaledValueForValue(CGFloat value)
                                        newBounds.size.width / 1.3,
                                        newBounds.size.height / 1.3);
     
-    self.countLabel.frame = ABFCenterRect(newLabelBounds,ABFRectCenter(newBounds));
+    _countLabel.frame = ABFCenterRect(newLabelBounds,ABFRectCenter(newBounds));
     
-    self.countLabel.text = [@(count) stringValue];
+    _countLabel.text = [@(count) stringValue];
     
     [self setNeedsDisplay];
 }
