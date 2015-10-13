@@ -219,6 +219,32 @@ NS_ASSUME_NONNULL_END
 extern ABFZoomLevel ABFZoomLevelForVisibleMapRect(MKMapRect visibleMapRect);
 
 /**
+ *  Block that defines the cell size in pixels of the grid used to cluster annotations.
+ *
+ *  To cluster annotations, the view is split into square cells. 
+ *  Each cell corresponds to a cluster of the annotations within it.
+ *
+ *  By default the cell size is 88pixels in width/height, with smaller size as you zoom in:
+ *
+ *  ABFZoomLevel 15: 64 px
+ *  ABFZoomLevel 18: 32 px
+ *  ABFZoomLevel 19: 16 px
+ *
+ *  Reminder: ABFZoomLevel inherits Google Map's zoom scale, 
+ *  with 0 representing the entire 2D Earth and 20 is max zoom.
+ *
+ *  It is recommended to switch on zoomLevel and return sizes for the various zoom scales.
+ */
+typedef NSUInteger(^ABFClusterSizeForZoomLevel)(ABFZoomLevel zoomLevel);
+
+/**
+ *  The default block the returns cluster grid cell size based on zoom level
+ */
+NS_ASSUME_NONNULL_BEGIN
+extern ABFClusterSizeForZoomLevel ABFDefaultClusterSizeForZoomLevel();
+NS_ASSUME_NONNULL_END
+
+/**
  *  This class acts as a controller to perform location fetches against a Realm object 
  *  that contains latitude and longitude values (the object must also contain a primary key).
  *
@@ -280,6 +306,15 @@ extern ABFZoomLevel ABFZoomLevelForVisibleMapRect(MKMapRect visibleMapRect);
  *  @see ABFAnnotation title
  */
 @property (nonatomic, strong, nullable) NSString *clusterTitleFormatString;
+
+/**
+ *  Block that defines the cell size in pixels of the grid used to cluster annotations.
+ *
+ *  Default is ABFDefaultClusterSizeForZoomLevel()
+ *
+ *  @see ABFClusterSizeForZoomLevel
+ */
+@property (nonatomic, strong, nonnull) ABFClusterSizeForZoomLevel clusterSizeBlock;
 
 /**
  *  Creates an instance of ABFLocationFetchedResultsController. 

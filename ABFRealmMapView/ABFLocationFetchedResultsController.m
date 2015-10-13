@@ -276,36 +276,38 @@ ABFZoomLevel ABFZoomLevelForVisibleMapRect(MKMapRect visibleMapRect)
 
 #pragma mark - Private Functions
 
-static NSUInteger ABFClusterSizeForZoomLevel(ABFZoomLevel zoomLevel)
+ABFClusterSizeForZoomLevel ABFDefaultClusterSizeForZoomLevel()
 {
-    switch (zoomLevel) {
-        case 0:
-        case 1:
-        case 2:
-        case 3:
-        case 4:
-        case 5:
-        case 6:
-        case 7:
-        case 8:
-        case 9:
-        case 10:
-        case 11:
-        case 12:
-        case 13:
-        case 14:
-        case 15:
-            return 64;
-        case 16:
-        case 17:
-        case 18:
-            return 32;
-        case 19:
-            return 16;
-        case 20:
-        default:
-            return 88;
-    }
+    return ^NSUInteger(ABFZoomLevel zoomLevel) {
+        switch (zoomLevel) {
+            case 0:
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+            case 6:
+            case 7:
+            case 8:
+            case 9:
+            case 10:
+            case 11:
+            case 12:
+            case 13:
+            case 14:
+            case 15:
+                return 64;
+            case 16:
+            case 17:
+            case 18:
+                return 32;
+            case 19:
+                return 16;
+            case 20:
+            default:
+                return 88;
+        }
+    };
 }
 
 #pragma mark - ABFLocationFetchedResultsController
@@ -331,6 +333,21 @@ static NSUInteger ABFClusterSizeForZoomLevel(ABFZoomLevel zoomLevel)
         _clusterTitleFormatString = @"$OBJECTSCOUNT objects in this area";
         _safeObjects = [[NSArray alloc] init];
         _annotations = [[NSSet alloc] init];
+        _clusterSizeBlock = ABFDefaultClusterSizeForZoomLevel();
+    }
+    
+    return self;
+}
+
+- (id)init
+{
+    self = [super init];
+    
+    if (self) {
+        _clusterTitleFormatString = @"$OBJECTSCOUNT objects in this area";
+        _safeObjects = [[NSArray alloc] init];
+        _annotations = [[NSSet alloc] init];
+        _clusterSizeBlock = ABFDefaultClusterSizeForZoomLevel();
     }
     
     return self;
@@ -355,7 +372,7 @@ static NSUInteger ABFClusterSizeForZoomLevel(ABFZoomLevel zoomLevel)
         ABFZoomLevel zoomLevel = ABFZoomLevelForVisibleMapRect(visibleMapRect);
         
         // Cluster size in pixels
-        NSUInteger clusterSize = ABFClusterSizeForZoomLevel(zoomLevel);
+        NSUInteger clusterSize = self.clusterSizeBlock(zoomLevel);
         
         // Create scale factor based on zoom scale and cluster size
         double scaleFactor = zoomScale/(double)clusterSize;
