@@ -68,6 +68,15 @@ public class RealmMapView: MKMapView {
     /// on the first refresh of the map annotations (presumably on viewWillAppear)
     @IBInspectable public var zoomOnFirstRefresh = true
     
+    /// Max zoom level of the map view to perform clustering on.
+    ///
+    /// ABFZoomLevel is inherited from MapKit's Google days:
+    /// 0 is the entire 2D Earth
+    /// 20 is max zoom
+    ///
+    /// Default is 20, which means clustering will occur at every zoom level if clusterAnnotations is YES
+    public var maxZoomLevelForClustering: ABFZoomLevel = 20
+    
     // MARK: Functions
     
     /// Performs a fresh fetch for Realm objects based on the current visible map rect
@@ -90,7 +99,9 @@ public class RealmMapView: MKMapView {
             
             let visibleMapRect = self.visibleMapRect
             
-            if self.clusterAnnotations {
+            let currentZoomLevel = ABFZoomLevelForVisibleMapRect(visibleMapRect)
+            
+            if self.clusterAnnotations && currentZoomLevel <= self.maxZoomLevelForClustering {
                 
                 let zoomScale = MKZoomScaleForMapView(self)
                 

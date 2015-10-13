@@ -91,6 +91,17 @@
 @property (nonatomic, assign) IBInspectable BOOL zoomOnFirstRefresh;
 
 /**
+ *  Max zoom level of the map view to perform clustering on.
+ *
+ *  ABFZoomLevel is inherited from MapKit's Google days:
+ *  0 is the entire 2D Earth
+ *  20 is max zoom
+ *
+ *  Default is 20, which means clustering will occur at every zoom level if clusterAnnotations is YES
+ */
+@property (nonatomic, assign) ABFZoomLevel maxZoomLevelForClustering;
+
+/**
  *  Creates a map view that automatically handles fetching Realm objects and displaying annotations
  *
  *  @param entityName       the class name for the Realm objects to fetch

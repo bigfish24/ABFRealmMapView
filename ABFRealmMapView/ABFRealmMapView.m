@@ -99,6 +99,7 @@ static NSString * const ABFAnnotationViewReuseId = @"ABFAnnotationViewReuseId";
     _clusterAnnotations = YES;
     _autoRefresh = YES;
     _zoomOnFirstRefresh = YES;
+    _maxZoomLevelForClustering = 20;
     
     _mapQueue = [[NSOperationQueue alloc] init];
     _mapQueue.maxConcurrentOperationCount = 1;
@@ -444,7 +445,10 @@ static NSString * const ABFAnnotationViewReuseId = @"ABFAnnotationViewReuseId";
         
         MKMapRect visibleMapRect = self.visibleMapRect;
         
-        if (self.clusterAnnotations) {
+        ABFZoomLevel currentZoomLevel = ABFZoomLevelForVisibleMapRect(visibleMapRect);
+        
+        if (self.clusterAnnotations &&
+            currentZoomLevel <= self.maxZoomLevelForClustering) {
             
             MKZoomScale zoomScale = MKZoomScaleForMapView(self);
             
