@@ -53,9 +53,13 @@ public class RealmMapView: MKMapView {
     @IBInspectable public var longitudeKeyPath: String?
     
     /// The key path on fetched Realm objects for the title of the annotation view
+    ///
+    /// If nil, then no title will be shown
     @IBInspectable public var titleKeyPath: String?
     
     /// The key path on fetched Realm objects for the subtitle of the annotation view
+    ///
+    /// If nil, then no subtitle
     @IBInspectable public var subtitleKeyPath: String?
     
     /// Designates if the map view will cluster the annotations
@@ -93,7 +97,7 @@ public class RealmMapView: MKMapView {
             
             let fetchRequest = ABFLocationFetchRequest(entityName: self.entityName!, inRealm: rlmRealm, latitudeKeyPath: self.latitudeKeyPath!, longitudeKeyPath: self.longitudeKeyPath!, forRegion: currentRegion)
             
-            self.fetchedResultsController.updateLocationFetchRequest(fetchRequest, titleKeyPath: self.titleKeyPath!, subtitleKeyPath: self.subtitleKeyPath!)
+            self.fetchedResultsController.updateLocationFetchRequest(fetchRequest, titleKeyPath: self.titleKeyPath, subtitleKeyPath: self.subtitleKeyPath)
             
             var refreshOperation: NSBlockOperation?
             

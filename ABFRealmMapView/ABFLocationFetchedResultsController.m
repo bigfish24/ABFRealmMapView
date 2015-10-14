@@ -606,13 +606,15 @@ ABFClusterSizeForZoomLevel ABFDefaultClusterSizeForZoomLevel()
 {
     NSString *title = @"";
     
-    @try {
-        title = (NSString *)[object valueForKeyPath:self.titleKeyPath];
-    }
-    @catch (NSException *exception) {
-        @throw [NSException exceptionWithName:@"ABFException"
-                                       reason:@"Title key path for fetch request entity name not valid"
-                                     userInfo:nil];
+    if (self.titleKeyPath) {
+        @try {
+            title = (NSString *)[object valueForKeyPath:self.titleKeyPath];
+        }
+        @catch (NSException *exception) {
+            @throw [NSException exceptionWithName:@"ABFException"
+                                           reason:@"Title key path for fetch request entity name not valid"
+                                         userInfo:nil];
+        }
     }
     
     return title;
@@ -622,13 +624,15 @@ ABFClusterSizeForZoomLevel ABFDefaultClusterSizeForZoomLevel()
 {
     NSString *subtitle = @"";
     
-    @try {
-        subtitle = (NSString *)[object valueForKeyPath:self.subtitleKeyPath];
-    }
-    @catch (NSException *exception) {
-        @throw [NSException exceptionWithName:@"ABFException"
-                                       reason:@"Subtitle key path for fetch request entity name not valid"
-                                     userInfo:nil];
+    if (self.subtitleKeyPath) {
+        @try {
+            subtitle = (NSString *)[object valueForKeyPath:self.subtitleKeyPath];
+        }
+        @catch (NSException *exception) {
+            @throw [NSException exceptionWithName:@"ABFException"
+                                           reason:@"Subtitle key path for fetch request entity name not valid"
+                                         userInfo:nil];
+        }
     }
     
     return subtitle;

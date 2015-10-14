@@ -288,13 +288,17 @@ NS_ASSUME_NONNULL_END
 
 /**
  *  The title key path on the Realm objects that correspond to the annotation title
+ *
+ *  If nil, then no title will be shown
  */
-@property (nonatomic, readonly, nonnull) NSString *titleKeyPath;
+@property (nonatomic, readonly, nullable) NSString *titleKeyPath;
 
 /**
  *  The subtitle key path on the Realm objects that correspond to the annotation subtitle
+ *
+ *  If nil, then no subtitle will be shown
  */
-@property (nonatomic, readonly, nonnull) NSString *subtitleKeyPath;
+@property (nonatomic, readonly, nullable) NSString *subtitleKeyPath;
 
 /**
  *  If clustering fetch is performed, the title of the annotations with multiple objects will be computed.
@@ -331,8 +335,8 @@ NS_ASSUME_NONNULL_END
  *  @return instance of ABFLocationFetchedResultsController
  */
 - (nonnull instancetype)initWithLocationFetchRequest:(nonnull ABFLocationFetchRequest *)fetchRequest
-                                        titleKeyPath:(nonnull NSString *)titleKeyPath
-                                     subtitleKeyPath:(nonnull NSString *)subtitleKeyPath;
+                                        titleKeyPath:(nullable NSString *)titleKeyPath
+                                     subtitleKeyPath:(nullable NSString *)subtitleKeyPath;
 
 /**
  *  Performs a fetch using the current fetch request.
@@ -366,7 +370,7 @@ NS_ASSUME_NONNULL_END
  *  @param subtitleKeyPath the subtitle key path on the Realm objects that correspond to the annotation subtitle
  */
 - (void)updateLocationFetchRequest:(nonnull ABFLocationFetchRequest *)fetchRequest
-                      titleKeyPath:(nonnull NSString *)titleKeyPath
-                   subtitleKeyPath:(nonnull NSString *)subtitleKeyPath;
+                      titleKeyPath:(nullable NSString *)titleKeyPath
+                   subtitleKeyPath:(nullable NSString *)subtitleKeyPath;
 
 @end
