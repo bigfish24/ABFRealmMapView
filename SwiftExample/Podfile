@@ -2,6 +2,6 @@ use_frameworks!
 
 target 'RealmMapViewExample' do
   pod 'RealmSwift', '>=0.96'
-  pod 'SwiftFetchedResultsController'
+  pod 'SwiftFetchedResultsController', '>=2.4'
   pod 'RealmSwiftSFRestaurantData', '>=0.3'
 end
