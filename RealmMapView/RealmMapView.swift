@@ -246,8 +246,15 @@ public class RealmMapView: MKMapView {
     
     private func toRLMConfiguration(configuration: Realm.Configuration) -> RLMRealmConfiguration {
         let rlmConfiguration = RLMRealmConfiguration()
-        rlmConfiguration.path = configuration.path
-        rlmConfiguration.inMemoryIdentifier = configuration.inMemoryIdentifier
+        
+        if (configuration.path != nil) {
+            rlmConfiguration.path = configuration.path
+        }
+        
+        if (configuration.inMemoryIdentifier != nil) {
+            rlmConfiguration.inMemoryIdentifier = configuration.inMemoryIdentifier
+        }
+        
         rlmConfiguration.encryptionKey = configuration.encryptionKey
         rlmConfiguration.readOnly = configuration.readOnly
         rlmConfiguration.schemaVersion = configuration.schemaVersion
