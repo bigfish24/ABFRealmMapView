@@ -192,6 +192,7 @@
 				A0A087A11B28E96E007AB6B6 /* Frameworks */,
 				A0A087A21B28E96E007AB6B6 /* Resources */,
 				CDA062B19E4DCF8DDD6D1332 /* Copy Pods Resources */,
+				025487AEF56A28B87726E666 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -211,6 +212,7 @@
 				A0A087BA1B28E96E007AB6B6 /* Frameworks */,
 				A0A087BB1B28E96E007AB6B6 /* Resources */,
 				25F75BA923A5FAC2A638F66A /* Copy Pods Resources */,
+				6F11255A53BC035B56D06C06 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -280,6 +282,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		025487AEF56A28B87726E666 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ABFRealmMapViewExample/Pods-ABFRealmMapViewExample-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		238995B96BB72DA3867D43F7 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -308,6 +325,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ABFRealmMapViewExampleTests/Pods-ABFRealmMapViewExampleTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6F11255A53BC035B56D06C06 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ABFRealmMapViewExampleTests/Pods-ABFRealmMapViewExampleTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		BFAE2926EE859D8D3392976D /* Check Pods Manifest.lock */ = {
