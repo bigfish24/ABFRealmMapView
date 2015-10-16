@@ -8,6 +8,8 @@
 
 #import <MapKit/MapKit.h>
 
+@class RLMResults, ABFLocationSafeRealmObject;
+
 /**
  *  Creates a circular view to represent a map annotation cluster
  *
@@ -33,5 +35,14 @@
  *  Default font is bold system font at size 12 with white color.
  */
 @property (nonatomic, readonly, nonnull) UILabel *countLabel;
+
+/**
+ *  Returns the safe location objects in the cluster annotation related to the cluster annotation view.
+ *
+ *  @param annotationView an instance of MKAnnotationView (returns nil if not ABFClusterAnnotationView subclass)
+ *
+ *  @return array of safe location objects contained in the cluster related to the annotation view
+ */
++ (nullable NSArray<ABFLocationSafeRealmObject *> *)safeObjectsForClusterAnnotationView:(nullable MKAnnotationView *)annotationView;
 
 @end

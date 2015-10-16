@@ -27,6 +27,8 @@ class ViewController: UIViewController {
         
         self.mapView.realmConfiguration = config
         
+        self.mapView.delegate = self
+        
         /**
         *  Set the cluster title format string
         *  $OBJECTSCOUNT variable track cluster count
@@ -43,6 +45,19 @@ class ViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+}
+
+extension ViewController: MKMapViewDelegate {
+    func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
+        if let safeObjects = ABFClusterAnnotationView.safeObjectsForClusterAnnotationView(view) {
+            
+            if let firstObject = safeObjects.first?.toObject(ABFRestaurantObject) {
+                print("First Object: \(firstObject.name)")
+            }
+            
+            print("Count: \(safeObjects.count)")
+        }
     }
 }
 

@@ -381,3 +381,10 @@ extension RealmMapView: MKMapViewDelegate {
         self.externalDelegate?.mapView?(mapView, didAddOverlayRenderers: renderers)
     }
 }
+
+/// Extension to ABFLocationSafeRealmObject to convert back to original Object type
+extension ABFLocationSafeRealmObject {
+    func toObject<T>(type: T.Type) -> T {
+        return unsafeBitCast(self.RLMObject(), T.self)
+    }
+}

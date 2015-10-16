@@ -9,6 +9,7 @@
 #import "ViewController.h"
 
 #import "ABFRealmMapView.h"
+#import "ABFClusterAnnotationView.h"
 
 #import <RealmSFRestaurantData/SFRestaurantScores.h>
 
@@ -36,6 +37,8 @@
     config.path = ABFRestaurantScoresPath();
     
     self.mapView.realmConfiguration = config;
+    
+    self.mapView.delegate = self;
     
     /**
      *  Set the cluster title format string
@@ -71,6 +74,18 @@
     if (status == kCLAuthorizationStatusAuthorizedWhenInUse) {
         self.mapView.showsUserLocation = YES;
     }
+}
+
+#pragma mar - MKMapViewDelegate
+
+- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
+{
+    NSArray<ABFLocationSafeRealmObject *> *safeObjects = [ABFClusterAnnotationView safeObjectsForClusterAnnotationView:view];
+    
+    ABFRestaurantObject *firstObject = safeObjects.firstObject.RLMObject;
+    
+    NSLog(@"First Object: %@",firstObject.name);
+    NSLog(@"Cluster Count: %lu",safeObjects.count);
 }
 
 #pragma mark - Private

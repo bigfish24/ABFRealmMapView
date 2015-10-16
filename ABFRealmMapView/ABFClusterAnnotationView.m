@@ -7,6 +7,7 @@
 //
 
 #import "ABFClusterAnnotationView.h"
+#import "ABFLocationFetchedResultsController.h"
 
 #pragma mark - Constants
 
@@ -42,6 +43,23 @@ static CGFloat ABFScaledValueForValue(CGFloat value)
 @end
 
 @implementation ABFClusterAnnotationView
+
+#pragma mark - Class Methods
+
++ (nullable NSArray<ABFLocationSafeRealmObject *> *)safeObjectsForClusterAnnotationView:(nullable MKAnnotationView *)annotationView
+{
+    if ([annotationView isKindOfClass:[self class]]) {
+        ABFClusterAnnotationView *clusterView = (ABFClusterAnnotationView *)annotationView;
+        
+        if ([clusterView.annotation isKindOfClass:[ABFAnnotation class]]) {
+            ABFAnnotation *clusterAnnotation = (ABFAnnotation *)clusterView.annotation;
+            
+            return clusterAnnotation.safeObjects;
+        }
+    }
+    
+    return nil;
+}
 
 - (id)initWithAnnotation:(id<MKAnnotation>)annotation reuseIdentifier:(NSString *)reuseIdentifier
 {
