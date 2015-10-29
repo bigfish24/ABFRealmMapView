@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Adam Fish. All rights reserved.
 //
 
-#import <MapKit/MapKit.h>
+@import MapKit;
 
 @class RLMResults, ABFLocationSafeRealmObject;
 

@@ -6,9 +6,8 @@
 //  Copyright (c) 2015 Adam Fish. All rights reserved.
 //
 
-#import <RBQFetchedResultsController/RBQFetchRequest.h>
-
 @import MapKit;
+@import RBQFetchedResultsController;
 
 /**
  *  Converts a MKCoordinate region to an NSPredicate

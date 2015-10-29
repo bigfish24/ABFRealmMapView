@@ -6,12 +6,11 @@
 //  Copyright (c) 2015 Adam Fish. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import <RBQFetchedResultsController/RBQSafeRealmObject.h>
-
 #import "ABFLocationFetchRequest.h"
 
+@import Foundation;
 @import MapKit;
+@import RBQFetchedResultsController;
 
 /**
  *  Value of ABFLocationSafeRealmObject currentDistance when there is no distance.

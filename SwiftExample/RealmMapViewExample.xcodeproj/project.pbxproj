@@ -13,11 +13,11 @@
 		A054C1811BBA0E730003618A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A054C17F1BBA0E730003618A /* Main.storyboard */; };
 		A054C1831BBA0E730003618A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A054C1821BBA0E730003618A /* Assets.xcassets */; };
 		A054C1861BBA0E730003618A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A054C1841BBA0E730003618A /* LaunchScreen.storyboard */; };
-		A0A9260A1BBB060400C7C014 /* RealmMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A926091BBB060400C7C014 /* RealmMapView.swift */; settings = {ASSET_TAGS = (); }; };
-		A0A926141BBB0C1C00C7C014 /* ABFClusterAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A9260D1BBB0C1C00C7C014 /* ABFClusterAnnotationView.m */; settings = {ASSET_TAGS = (); }; };
-		A0A926151BBB0C1C00C7C014 /* ABFLocationFetchedResultsController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A9260F1BBB0C1C00C7C014 /* ABFLocationFetchedResultsController.m */; settings = {ASSET_TAGS = (); }; };
-		A0A926161BBB0C1C00C7C014 /* ABFLocationFetchRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A926111BBB0C1C00C7C014 /* ABFLocationFetchRequest.m */; settings = {ASSET_TAGS = (); }; };
-		A0A926171BBB0C1C00C7C014 /* ABFRealmMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A926131BBB0C1C00C7C014 /* ABFRealmMapView.m */; settings = {ASSET_TAGS = (); }; };
+		A0A9260A1BBB060400C7C014 /* RealmMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A926091BBB060400C7C014 /* RealmMapView.swift */; };
+		A0A926141BBB0C1C00C7C014 /* ABFClusterAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A9260D1BBB0C1C00C7C014 /* ABFClusterAnnotationView.m */; };
+		A0A926151BBB0C1C00C7C014 /* ABFLocationFetchedResultsController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A9260F1BBB0C1C00C7C014 /* ABFLocationFetchedResultsController.m */; };
+		A0A926161BBB0C1C00C7C014 /* ABFLocationFetchRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A926111BBB0C1C00C7C014 /* ABFLocationFetchRequest.m */; };
+		A0A926171BBB0C1C00C7C014 /* ABFRealmMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A926131BBB0C1C00C7C014 /* ABFRealmMapView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +30,7 @@
 		A054C1821BBA0E730003618A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A054C1851BBA0E730003618A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A054C1871BBA0E730003618A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A06643F81BE2D0A9005725FA /* RealmMapView-BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RealmMapView-BridgingHeader.h"; sourceTree = "<group>"; };
 		A0A926091BBB060400C7C014 /* RealmMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmMapView.swift; sourceTree = "<group>"; };
 		A0A9260C1BBB0C1C00C7C014 /* ABFClusterAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABFClusterAnnotationView.h; sourceTree = "<group>"; };
 		A0A9260D1BBB0C1C00C7C014 /* ABFClusterAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABFClusterAnnotationView.m; sourceTree = "<group>"; };
@@ -39,7 +40,6 @@
 		A0A926111BBB0C1C00C7C014 /* ABFLocationFetchRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABFLocationFetchRequest.m; sourceTree = "<group>"; };
 		A0A926121BBB0C1C00C7C014 /* ABFRealmMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABFRealmMapView.h; sourceTree = "<group>"; };
 		A0A926131BBB0C1C00C7C014 /* ABFRealmMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABFRealmMapView.m; sourceTree = "<group>"; };
-		A0EF1ADA1BBDC37E00DC7122 /* RealmMapView-BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RealmMapView-BridgingHeader.h"; sourceTree = "<group>"; };
 		DE3E139DAE31B51E9E09A857 /* Pods-RealmMapViewExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RealmMapViewExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-RealmMapViewExample/Pods-RealmMapViewExample.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -93,6 +93,7 @@
 				A054C1821BBA0E730003618A /* Assets.xcassets */,
 				A054C1841BBA0E730003618A /* LaunchScreen.storyboard */,
 				A054C1871BBA0E730003618A /* Info.plist */,
+				A06643F81BE2D0A9005725FA /* RealmMapView-BridgingHeader.h */,
 			);
 			path = RealmMapViewExample;
 			sourceTree = "<group>";
@@ -100,7 +101,6 @@
 		A0A926081BBB05E600C7C014 /* RealmMapView */ = {
 			isa = PBXGroup;
 			children = (
-				A0EF1ADA1BBDC37E00DC7122 /* RealmMapView-BridgingHeader.h */,
 				A0A926091BBB060400C7C014 /* RealmMapView.swift */,
 			);
 			name = RealmMapView;
@@ -376,7 +376,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Realm.RealmMapViewExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/../RealmMapView/RealmMapView-BridgingHeader.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/RealmMapViewExample/RealmMapView-BridgingHeader.h";
 			};
 			name = Debug;
 		};
@@ -389,7 +389,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Realm.RealmMapViewExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/../RealmMapView/RealmMapView-BridgingHeader.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/RealmMapViewExample/RealmMapView-BridgingHeader.h";
 			};
 			name = Release;
 		};

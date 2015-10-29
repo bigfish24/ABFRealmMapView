@@ -5,10 +5,10 @@
 //  Copyright (c) 2015 Adam Fish. All rights reserved.
 //
 
-#import <MapKit/MapKit.h>
-#import <Realm/Realm.h>
-
 #import "ABFLocationFetchedResultsController.h"
+
+@import MapKit;
+@import Realm;
 
 /**
  *  The class creates a map interface to display annotations representing Realm object locations.

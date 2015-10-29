@@ -6,4 +6,7 @@
 //  Copyright © 2015 Adam Fish. All rights reserved.
 //
 
-@import ABFRealmMapView;
+#import "ABFRealmMapView.h"
+#import "ABFLocationFetchRequest.h"
+#import "ABFLocationFetchedResultsController.h"
+#import "ABFClusterAnnotationView.h"
