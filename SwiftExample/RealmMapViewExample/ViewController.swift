@@ -52,8 +52,8 @@ extension ViewController: MKMapViewDelegate {
     func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
         if let safeObjects = ABFClusterAnnotationView.safeObjectsForClusterAnnotationView(view) {
             
-            if let firstObject = safeObjects.first?.toObject(ABFRestaurantObject) {
-                print("First Object: \(firstObject.name)")
+            if let firstObjectName = safeObjects.first?.toObject(ABFRestaurantObject).name {
+                print("First Object: \(firstObjectName)")
             }
             
             print("Count: \(safeObjects.count)")
