@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "RealmMapView"
-  s.version      = "1.6.2"
+  s.version      = "1.6.3"
   s.summary      = "Drop-in clustering map interface for Realm Swift objects"
   s.description  = <<-DESC
 The RealmMapView class creates an interface object that inherits MKMapView and manages fetching and displaying annotations for a Realm Swift object class that contains coordinate data. 
