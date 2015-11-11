@@ -10,7 +10,13 @@
 
 @import Foundation;
 @import MapKit;
+
+#if __has_include(<RBQFetchedResultsController/RBQSafeRealmObject.h>)
+#import <RBQFetchedResultsController/RBQSafeRealmObject.h>
+#else
 @import RBQFetchedResultsController;
+#endif
+
 
 /**
  *  Value of ABFLocationSafeRealmObject currentDistance when there is no distance.

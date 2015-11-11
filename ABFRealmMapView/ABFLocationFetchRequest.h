@@ -7,7 +7,12 @@
 //
 
 @import MapKit;
+
+#if __has_include(<RBQFetchedResultsController/RBQFetchRequest.h>)
+#import <RBQFetchedResultsController/RBQFetchRequest.h>
+#else
 @import RBQFetchedResultsController;
+#endif
 
 /**
  *  Converts a MKCoordinate region to an NSPredicate
