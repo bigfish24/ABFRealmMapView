@@ -13,7 +13,7 @@ The quick overview is that Realm is a replacement to Core Data or SQLite. It is 
 ####Screenshot
 The demo app uses [RealmSFRestaurantData](https://github.com/bigfish24/RealmSFRestaurantData) to search through restaurants in San Francisco.
 
-![SF Restaurant Map View](/images/ABFRealmMapView.gif?raw=true "SF Restaurant Map View")
+![SF Restaurant Map View](http://giant.gfycat.com/CleanSmartBadger.gif "SF Restaurant Map View")
 
 ####Tutorial
 1. Add `MKMapView` to your Xib or storyboard and replace the class with `ABFRealmMapView` (`RealmMapView` for Swift version)
