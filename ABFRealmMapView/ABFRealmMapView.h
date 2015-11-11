@@ -9,7 +9,7 @@
 
 @import MapKit;
 
-#if __has_include(<RBQFetchedResultsController/RealmMapView-BridgingHeader.h>)
+#if __has_include(<RealmMapView/RealmMapView-BridgingHeader.h>)
 @import Realm;
 #else
 #import <Realm/Realm.h>
