@@ -9,12 +9,11 @@
 
 @import MapKit;
 
-#if __has_include(<Realm/Realm.h>)
-#import <Realm/Realm.h>
-#else
+#if __has_include(<RBQFetchedResultsController/RealmMapView-BridgingHeader.h>)
 @import Realm;
+#else
+#import <Realm/Realm.h>
 #endif
-
 
 /**
  *  The class creates a map interface to display annotations representing Realm object locations.

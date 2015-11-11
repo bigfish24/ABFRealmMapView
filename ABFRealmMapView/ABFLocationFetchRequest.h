@@ -8,10 +8,10 @@
 
 @import MapKit;
 
-#if __has_include(<RBQFetchedResultsController/RBQFetchRequest.h>)
-#import <RBQFetchedResultsController/RBQFetchRequest.h>
-#else
+#if __has_include(<RBQFetchedResultsController/RealmMapView-BridgingHeader.h>)
 @import RBQFetchedResultsController;
+#else
+#import <RBQFetchedResultsController/RBQFetchRequest.h>
 #endif
 
 /**
