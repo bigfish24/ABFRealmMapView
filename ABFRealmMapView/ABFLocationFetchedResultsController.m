@@ -545,6 +545,7 @@ ABFClusterSizeForZoomLevel ABFDefaultClusterSizeForZoomLevel()
                 ABFLocationSafeRealmObject *safeObject = cluster.firstObject;
                 
                 title = safeObject.title;
+                [annotation setSubtitle:safeObject.subtitle];
             }
             
             [annotation setTitle:title];
