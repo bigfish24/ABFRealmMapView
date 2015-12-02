@@ -47,6 +47,11 @@
     self.mapView.fetchResultsController.clusterTitleFormatString = @"$OBJECTSCOUNT restaurants in this area";
     
     /**
+     *  Add filtering to the result set in addition to the bounding box filter
+     */
+    self.mapView.basePredicate = [NSPredicate predicateWithFormat:@"name BEGINSWITH 'A'"];
+    
+    /**
      *  Handle user location auth
      */
     [self setupLocationManager];

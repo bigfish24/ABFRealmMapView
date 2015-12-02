@@ -429,11 +429,19 @@ static NSString * const ABFAnnotationViewReuseId = @"ABFAnnotationViewReuseId";
         
         MKCoordinateRegion currentRegion = self.region;
         
-        ABFLocationFetchRequest *fetchRequest = [ABFLocationFetchRequest locationFetchRequestWithEntityName:self.entityName
-                                                                                                    inRealm:self.realm
-                                                                                            latitudeKeyPath:self.latitudeKeyPath
-                                                                                           longitudeKeyPath:self.longitudeKeyPath
-                                                                                                  forRegion:currentRegion];
+        ABFLocationFetchRequest *fetchRequest =
+        [ABFLocationFetchRequest locationFetchRequestWithEntityName:self.entityName
+                                                            inRealm:self.realm
+                                                    latitudeKeyPath:self.latitudeKeyPath
+                                                   longitudeKeyPath:self.longitudeKeyPath
+                                                          forRegion:currentRegion];
+        
+        if (self.basePredicate) {
+            NSCompoundPredicate *compPred =
+            [NSCompoundPredicate andPredicateWithSubpredicates:@[fetchRequest.predicate,self.basePredicate]];
+            
+            fetchRequest.predicate = compPred;
+        }
         
         [self.fetchResultsController updateLocationFetchRequest:fetchRequest
                                                    titleKeyPath:self.titleKeyPath

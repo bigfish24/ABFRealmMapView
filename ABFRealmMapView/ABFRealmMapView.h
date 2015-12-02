@@ -107,6 +107,12 @@
 @property (nonatomic, assign) ABFZoomLevel maxZoomLevelForClustering;
 
 /**
+ *  Use this property to filter items found by the map. This predicate will be included, via AND,
+ *  along with the generated predicate for the location bounding box.
+ */
+@property (nonatomic, strong, nullable) NSPredicate *basePredicate;
+
+/**
  *  Creates a map view that automatically handles fetching Realm objects and displaying annotations
  *
  *  @param entityName       the class name for the Realm objects to fetch

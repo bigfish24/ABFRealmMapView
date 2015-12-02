@@ -81,6 +81,10 @@ public class RealmMapView: MKMapView {
     /// Default is 20, which means clustering will occur at every zoom level if clusterAnnotations is YES
     public var maxZoomLevelForClustering: ABFZoomLevel = 20
     
+    /// Use this property to filter items found by the map. This predicate will be included, via AND,
+    /// along with the generated predicate for the location bounding box.
+    public var basePredicate: NSPredicate?
+    
     // MARK: Functions
     
     /// Performs a fresh fetch for Realm objects based on the current visible map rect
@@ -96,6 +100,11 @@ public class RealmMapView: MKMapView {
         if let rlmRealm = try? RLMRealm(configuration: rlmConfig) {
             
             let fetchRequest = ABFLocationFetchRequest(entityName: self.entityName!, inRealm: rlmRealm, latitudeKeyPath: self.latitudeKeyPath!, longitudeKeyPath: self.longitudeKeyPath!, forRegion: currentRegion)
+            
+            if let basePred = self.basePredicate, let pred = fetchRequest.predicate {
+                let compPred = NSCompoundPredicate(andPredicateWithSubpredicates: [pred, basePred])
+                fetchRequest.predicate = compPred
+            }
             
             self.fetchedResultsController.updateLocationFetchRequest(fetchRequest, titleKeyPath: self.titleKeyPath, subtitleKeyPath: self.subtitleKeyPath)
             
