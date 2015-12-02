@@ -38,7 +38,7 @@ class ViewController: UIViewController {
         /**
         *  Add filtering to the result set in addition to the bounding box filter
         */
-        self.mapView.basePredicate = NSPredicate(format: "name BEGINSWITH 'A'");
+        self.mapView.basePredicate = NSPredicate(format: "name BEGINSWITH 'A'")
     }
     
     override func viewDidAppear(animated: Bool) {
