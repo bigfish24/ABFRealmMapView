@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "ABFRealmMapView"
-  s.version      = "1.7.1"
+  s.version      = "1.7.2"
   s.summary      = "Drop-in clustering map interface for Realm objects"
   s.description  = <<-DESC
 The ABFRealmMapView class creates an interface object that inherits MKMapView and manages fetching and displaying annotations for a Realm object class that contains coordinate data. 
