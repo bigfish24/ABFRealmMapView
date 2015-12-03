@@ -348,6 +348,7 @@ ABFClusterSizeForZoomLevel ABFDefaultClusterSizeForZoomLevel()
         _safeObjects = [[NSArray alloc] init];
         _annotations = [[NSSet alloc] init];
         _clusterSizeBlock = ABFDefaultClusterSizeForZoomLevel();
+        _resultsLimit = -1;
     }
     
     return self;
@@ -453,7 +454,13 @@ ABFClusterSizeForZoomLevel ABFDefaultClusterSizeForZoomLevel()
 {
     NSMutableArray *safeObjects = [NSMutableArray arrayWithCapacity:fetchResults.count];
     
+    NSUInteger count = 0;
+    
     for (RLMObject *object in fetchResults) {
+        
+        if (count == self.resultsLimit) {
+            break;
+        }
         
         CLLocationCoordinate2D coordinate = [self coordinateForObject:object];
         
@@ -477,6 +484,8 @@ ABFClusterSizeForZoomLevel ABFDefaultClusterSizeForZoomLevel()
         }
         
         [safeObjects addObject:safeObject];
+        
+        count ++;
     }
     
     if (self.sortDescriptor) {

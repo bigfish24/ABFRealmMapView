@@ -72,6 +72,15 @@ public class RealmMapView: MKMapView {
     /// on the first refresh of the map annotations (presumably on viewWillAppear)
     @IBInspectable public var zoomOnFirstRefresh = true
     
+    /// If enabled, annotation views will be animated when added to the map.
+    ///
+    /// Default is YES
+    @IBInspectable public var animateAnnotations = true
+    
+    /// If YES, a standard callout bubble will be shown when the annotation is selected.
+    /// The annotation must have a title for the callout to be shown.
+    @IBInspectable public var canShowCallout = true
+    
     /// Max zoom level of the map view to perform clustering on.
     ///
     /// ABFZoomLevel is inherited from MapKit's Google days:
@@ -80,6 +89,20 @@ public class RealmMapView: MKMapView {
     ///
     /// Default is 20, which means clustering will occur at every zoom level if clusterAnnotations is YES
     public var maxZoomLevelForClustering: ABFZoomLevel = 20
+    
+    /// The limit on how many results from Realm will be added to the map.
+    ///
+    /// This applies whether or not clustering is enabled.
+    ///
+    /// Default is -1, or unlimited results.
+    public var resultsLimit: ABFResultsLimit {
+        set {
+            self.fetchedResultsController.resultsLimit = newValue
+        }
+        get {
+            return self.fetchedResultsController.resultsLimit
+        }
+    }
     
     /// Use this property to filter items found by the map. This predicate will be included, via AND,
     /// along with the generated predicate for the location bounding box.
@@ -322,7 +345,7 @@ extension RealmMapView: MKMapViewDelegate {
             if annotationView == nil {
                 annotationView = ABFClusterAnnotationView(annotation: fetchedAnnotation, reuseIdentifier: ABFAnnotationViewReuseId)
                 
-                annotationView!.canShowCallout = true
+                annotationView!.canShowCallout = self.canShowCallout
             }
             
             annotationView!.count = UInt(fetchedAnnotation.safeObjects.count)
@@ -336,14 +359,13 @@ extension RealmMapView: MKMapViewDelegate {
     
     public func mapView(mapView: MKMapView, didAddAnnotationViews views: [MKAnnotationView]) {
         
-        if let delegate = self.externalDelegate, let method = delegate.mapView?(mapView, didAddAnnotationViews: views) {
-            method
-        }
-        else {
+        if self.animateAnnotations {
             for view in views {
                 self.addAnimation(view)
             }
         }
+        
+        self.externalDelegate?.mapView?(mapView, didAddAnnotationViews: views)
     }
     
     public func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {

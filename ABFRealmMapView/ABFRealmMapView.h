@@ -96,6 +96,21 @@
 @property (nonatomic, assign) IBInspectable BOOL zoomOnFirstRefresh;
 
 /**
+ *  If enabled, annotation views will be animated when added to the map.
+ *
+ *  Default is YES
+ */
+@property (nonatomic, assign) IBInspectable BOOL animateAnnotations;
+
+/**
+ *  If YES, a standard callout bubble will be shown when the annotation is selected.
+ *  The annotation must have a title for the callout to be shown.
+ *
+ *  Default is YES
+ */
+@property (nonatomic, assign) IBInspectable BOOL canShowCallout;
+
+/**
  *  Max zoom level of the map view to perform clustering on.
  *
  *  ABFZoomLevel is inherited from MapKit's Google days:
@@ -105,6 +120,15 @@
  *  Default is 20, which means clustering will occur at every zoom level if clusterAnnotations is YES
  */
 @property (nonatomic, assign) ABFZoomLevel maxZoomLevelForClustering;
+
+/**
+ *  The limit on how many results from Realm will be added to the map.
+ *
+ *  This applies whether or not clustering is enabled.
+ *
+ *  Default is -1, or unlimited results.
+ */
+@property (nonatomic, assign) ABFResultsLimit resultsLimit;
 
 /**
  *  Use this property to filter items found by the map. This predicate will be included, via AND,

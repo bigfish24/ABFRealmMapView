@@ -26,6 +26,7 @@ static NSString * const ABFAnnotationViewReuseId = @"ABFAnnotationViewReuseId";
 
 @implementation ABFRealmMapView
 @synthesize realmConfiguration = _realmConfiguration;
+@dynamic resultsLimit;
 
 #pragma mark - Init
 
@@ -100,6 +101,8 @@ static NSString * const ABFAnnotationViewReuseId = @"ABFAnnotationViewReuseId";
     _autoRefresh = YES;
     _zoomOnFirstRefresh = YES;
     _maxZoomLevelForClustering = 20;
+    _animateAnnotations = YES;
+    _canShowCallout = YES;
     
     _mapQueue = [[NSOperationQueue alloc] init];
     _mapQueue.maxConcurrentOperationCount = 1;
@@ -191,7 +194,7 @@ static NSString * const ABFAnnotationViewReuseId = @"ABFAnnotationViewReuseId";
         if (!annotationView) {
             annotationView = [[ABFClusterAnnotationView alloc] initWithAnnotation:fetchedAnnotation
                                                                   reuseIdentifier:ABFAnnotationViewReuseId];
-            annotationView.canShowCallout = YES;
+            annotationView.canShowCallout = self.canShowCallout;
         }
         
         annotationView.count = fetchedAnnotation.safeObjects.count;
@@ -205,16 +208,16 @@ static NSString * const ABFAnnotationViewReuseId = @"ABFAnnotationViewReuseId";
 
 - (void)mapView:(MKMapView *)mapView didAddAnnotationViews:(NSArray *)views
 {
-    id<MKMapViewDelegate> delegate = self.externalDelegate;
-    
-    if ([delegate respondsToSelector:@selector(mapView:didAddAnnotationViews:)]) {
-        
-        [delegate mapView:mapView didAddAnnotationViews:views];
-    }
-    else {
+    if (self.animateAnnotations) {
         for (UIView *view in views) {
             [self addAnimationToView:view];
         }
+    }
+    
+    id<MKMapViewDelegate> delegate = self.externalDelegate;
+    
+    if ([delegate respondsToSelector:@selector(mapView:didAddAnnotationViews:)]) {
+        [delegate mapView:mapView didAddAnnotationViews:views];
     }
 }
 
@@ -400,6 +403,11 @@ static NSString * const ABFAnnotationViewReuseId = @"ABFAnnotationViewReuseId";
     }
 }
 
+- (void)setResultsLimit:(ABFResultsLimit)resultsLimit
+{
+    self.fetchResultsController.resultsLimit = resultsLimit;
+}
+
 #pragma mark - Getters
 
 - (RLMRealm *)realm
@@ -418,6 +426,11 @@ static NSString * const ABFAnnotationViewReuseId = @"ABFAnnotationViewReuseId";
     }
     
     return [RLMRealmConfiguration defaultConfiguration];
+}
+
+- (ABFResultsLimit)resultsLimit
+{
+    return self.fetchResultsController.resultsLimit;
 }
 
 #pragma mark - Public Instance

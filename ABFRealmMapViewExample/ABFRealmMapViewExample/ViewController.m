@@ -52,6 +52,11 @@
     self.mapView.basePredicate = [NSPredicate predicateWithFormat:@"name BEGINSWITH 'A'"];
     
     /**
+     *  Limit the map results
+     */
+    self.mapView.resultsLimit = 200;
+    
+    /**
      *  Handle user location auth
      */
     [self setupLocationManager];
@@ -91,6 +96,13 @@
     
     NSLog(@"First Object: %@",firstObject.name);
     NSLog(@"Cluster Count: %lu",safeObjects.count);
+}
+
+- (void)mapView:(MKMapView *)mapView didAddAnnotationViews:(nonnull NSArray<MKAnnotationView *> *)views
+{
+    if (self.mapView.fetchResultsController.safeObjects.count == self.mapView.resultsLimit) {
+        NSLog(@"Hit Results Limit!");
+    }
 }
 
 #pragma mark - Private

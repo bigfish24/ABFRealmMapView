@@ -39,6 +39,11 @@ class ViewController: UIViewController {
         *  Add filtering to the result set in addition to the bounding box filter
         */
         self.mapView.basePredicate = NSPredicate(format: "name BEGINSWITH 'A'")
+        
+        /**
+        *  Limit the map results
+        */
+        self.mapView.resultsLimit = 200
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -62,6 +67,12 @@ extension ViewController: MKMapViewDelegate {
             }
             
             print("Count: \(safeObjects.count)")
+        }
+    }
+    
+    func mapView(mapView: MKMapView, didAddAnnotationViews views: [MKAnnotationView]) {
+        if self.mapView.fetchedResultsController.safeObjects.count == self.mapView.resultsLimit {
+            print("Hit Results Limit!")
         }
     }
 }

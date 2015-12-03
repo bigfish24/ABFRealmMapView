@@ -249,6 +249,13 @@ extern ABFClusterSizeForZoomLevel ABFDefaultClusterSizeForZoomLevel();
 NS_ASSUME_NONNULL_END
 
 /**
+ *  Defines the limit for how many results from Realm should be added to the map
+ *
+ *  -1 results in no limit or unlimited results.
+ */
+typedef NSInteger ABFResultsLimit;
+
+/**
  *  This class acts as a controller to perform location fetches against a Realm object 
  *  that contains latitude and longitude values (the object must also contain a primary key).
  *
@@ -323,6 +330,15 @@ NS_ASSUME_NONNULL_END
  *  @see ABFClusterSizeForZoomLevel
  */
 @property (nonatomic, strong, nonnull) ABFClusterSizeForZoomLevel clusterSizeBlock;
+
+/**
+ *  The limit on how many results from Realm will be added to the map.
+ *
+ *  This applies whether or not clustering is enabled.
+ *
+ *  Default is -1, or unlimited results.
+ */
+@property (nonatomic, assign) ABFResultsLimit resultsLimit;
 
 /**
  *  Creates an instance of ABFLocationFetchedResultsController. 
