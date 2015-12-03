@@ -299,7 +299,7 @@ extension RealmMapView: MKMapViewDelegate {
     }
     
     public func mapViewDidFailLoadingMap(mapView: MKMapView, withError error: NSError) {
-        self.mapViewDidFailLoadingMap(mapView, withError: error)
+        self.externalDelegate?.mapViewDidFailLoadingMap?(mapView, withError: error)
     }
     
     public func mapViewWillStartRenderingMap(mapView: MKMapView) {
