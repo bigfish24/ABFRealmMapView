@@ -10,6 +10,8 @@
 
 #if __has_include(<RealmMapView/RealmMapView-BridgingHeader.h>)
 @import RBQFetchedResultsController;
+#elif __has_include("RBQFetchRequest.h")
+#import "RBQFetchRequest.h"
 #else
 #import <RBQFetchedResultsController/RBQFetchRequest.h>
 #endif

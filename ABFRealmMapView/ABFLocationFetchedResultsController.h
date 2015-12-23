@@ -13,6 +13,8 @@
 
 #if __has_include(<RealmMapView/RealmMapView-BridgingHeader.h>)
 @import RBQFetchedResultsController;
+#elif __has_include("RBQSafeRealmObject.h")
+#import "RBQSafeRealmObject.h"
 #else
 #import <RBQFetchedResultsController/RBQSafeRealmObject.h>
 #endif
