@@ -37,7 +37,7 @@ If you still have questions, a slightly longer tutorial is available [here](http
 `ABFRealmMapView` is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
-_**Starting with Xcode 7.1, there is an issue with Cocoapods 0.39 that caused the interop of the Objective-C code for `ABFRealmMapView` to fail on compile when used in `RealmMapView`. This problem has now been resolved as of v1.6.6. Please be sure to use this version or higher with Xcode 7.1.**_
+_**Starting with Xcode 7.1, there is an issue with CocoaPods 0.39 that caused the interop of the Objective-C code for `ABFRealmMapView` to fail on compile when used in `RealmMapView`. This problem has now been resolved as of v1.6.6. Please be sure to use this version or higher with Xcode 7.1.**_
 
 **Objective-C**
 ```
