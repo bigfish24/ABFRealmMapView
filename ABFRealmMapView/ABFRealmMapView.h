@@ -83,6 +83,8 @@
 /**
  *  Designates if the map view automatically refreshes when the map moves
  *
+ *  Also will respond to change notifications in Realm to autorefresh
+ *
  *  Default is YES
  */
 @property (nonatomic, assign) IBInspectable BOOL autoRefresh;

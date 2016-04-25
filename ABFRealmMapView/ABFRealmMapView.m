@@ -22,6 +22,12 @@ static NSString * const ABFAnnotationViewReuseId = @"ABFAnnotationViewReuseId";
 
 @property (nonatomic, weak) id<MKMapViewDelegate>externalDelegate;
 
+@property (nonatomic, strong) RLMNotificationToken *notificationToken;
+
+@property (nonatomic, strong) id<RLMCollection> notificationCollection;
+
+@property (nonatomic, strong) NSRunLoop *notificationRunLoop;
+
 @end
 
 @implementation ABFRealmMapView
@@ -37,7 +43,7 @@ static NSString * const ABFAnnotationViewReuseId = @"ABFAnnotationViewReuseId";
                       titleKeypath:(NSString *)titleKeyPath
                    subtitleKeyPath:(NSString *)subtitleKeyPath
 {
-    self = [super init];
+    self = [self init];
     
     if (self) {
         _entityName = entityName;
@@ -46,9 +52,6 @@ static NSString * const ABFAnnotationViewReuseId = @"ABFAnnotationViewReuseId";
         _longitudeKeyPath = longitudeKeyPath;
         _titleKeyPath = titleKeyPath;
         _subtitleKeyPath = subtitleKeyPath;
-        
-        _clusterAnnotations = YES;
-        _autoRefresh = YES;
         
         _mapQueue = [[NSOperationQueue alloc] init];
         _mapQueue.maxConcurrentOperationCount = 1;
@@ -106,6 +109,11 @@ static NSString * const ABFAnnotationViewReuseId = @"ABFAnnotationViewReuseId";
     
     _mapQueue = [[NSOperationQueue alloc] init];
     _mapQueue.maxConcurrentOperationCount = 1;
+}
+
+- (void)dealloc
+{
+    [self registerChangeNotification:NO];
 }
 
 #pragma mark - <MKMapViewDelegate>
@@ -328,6 +336,8 @@ static NSString * const ABFAnnotationViewReuseId = @"ABFAnnotationViewReuseId";
 }
 
 #if TARGET_OS_IPHONE
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
 - (MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id <MKOverlay>)overlay
 {
     id<MKMapViewDelegate> delegate = self.externalDelegate;
@@ -347,6 +357,7 @@ static NSString * const ABFAnnotationViewReuseId = @"ABFAnnotationViewReuseId";
         [delegate mapView:mapView didAddOverlayViews:overlayViews];
     }
 }
+#pragma clang diagnostic pop
 #endif
 
 #pragma mark - Setters
@@ -462,7 +473,9 @@ static NSString * const ABFAnnotationViewReuseId = @"ABFAnnotationViewReuseId";
         
         typeof(self) __weak weakSelf = self;
         
-        NSBlockOperation *refreshOperation = nil;
+        NSBlockOperation *refreshOperation = [[NSBlockOperation alloc] init];
+        
+        NSBlockOperation __weak *weakOp = refreshOperation;
         
         MKMapRect visibleMapRect = self.visibleMapRect;
         
@@ -473,20 +486,26 @@ static NSString * const ABFAnnotationViewReuseId = @"ABFAnnotationViewReuseId";
             
             MKZoomScale zoomScale = MKZoomScaleForMapView(self);
             
-            refreshOperation = [NSBlockOperation blockOperationWithBlock:^() {
-                
-                [weakSelf.fetchResultsController performClusteringFetchForVisibleMapRect:visibleMapRect
-                                                                               zoomScale:zoomScale];
-                
-                [weakSelf addAnnotationsToMapView:weakSelf.fetchResultsController.annotations];
+            [refreshOperation addExecutionBlock:^{
+                if (![weakOp isCancelled]) {
+                    [weakSelf.fetchResultsController performClusteringFetchForVisibleMapRect:visibleMapRect
+                                                                                   zoomScale:zoomScale];
+                    
+                    [weakSelf addAnnotationsToMapView:weakSelf.fetchResultsController.annotations];
+                    
+                    [weakSelf registerChangeNotification:weakSelf.autoRefresh];
+                }
             }];
         }
         else {
-            refreshOperation = [NSBlockOperation blockOperationWithBlock:^() {
-                
-                [weakSelf.fetchResultsController performFetch];
-                
-                [weakSelf addAnnotationsToMapView:weakSelf.fetchResultsController.annotations];
+            [refreshOperation addExecutionBlock:^{
+                if (![weakOp isCancelled]) {
+                    [weakSelf.fetchResultsController performFetch];
+                    
+                    [weakSelf addAnnotationsToMapView:weakSelf.fetchResultsController.annotations];
+                    
+                    [weakSelf registerChangeNotification:weakSelf.autoRefresh];
+                }
             }];
         }
         
@@ -588,6 +607,54 @@ static NSString * const ABFAnnotationViewReuseId = @"ABFAnnotationViewReuseId";
     region.span.longitudeDelta *= 1.3;
     
     return region;
+}
+
+- (void)registerChangeNotification:(BOOL)registerNotifications
+{    
+    if (registerNotifications) {
+        typeof(self) __weak weakSelf = self;
+        
+        // Setup run loop
+        if (!self.notificationRunLoop) {
+            dispatch_semaphore_t sem = dispatch_semaphore_create(0);
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+                CFRunLoopPerformBlock(CFRunLoopGetCurrent(), kCFRunLoopDefaultMode, ^{
+                    weakSelf.notificationRunLoop = [NSRunLoop currentRunLoop];
+                    
+                    dispatch_semaphore_signal(sem);
+                });
+                
+                CFRunLoopRun();
+            });
+            
+            dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
+        }
+        
+        CFRunLoopPerformBlock(self.notificationRunLoop.getCFRunLoop, kCFRunLoopDefaultMode, ^{
+            if (weakSelf.notificationToken) {
+                [weakSelf.notificationToken stop];
+                weakSelf.notificationToken = nil;
+                weakSelf.notificationCollection = nil;
+            }
+            
+            weakSelf.notificationCollection = weakSelf.fetchResultsController.fetchRequest.fetchObjects;
+            weakSelf.notificationToken = [weakSelf.notificationCollection
+                                          addNotificationBlock:^(id<RLMCollection>  _Nullable collection,
+                                                                 RLMCollectionChange * _Nullable change,
+                                                                 NSError * _Nullable error) {
+                                              if (!error &&
+                                                  change) {
+                                                  [weakSelf refreshMapView];
+                                              }
+                                          }];
+        });
+        
+        CFRunLoopWakeUp(self.notificationRunLoop.getCFRunLoop);
+    }
+    else if (self.notificationRunLoop) {
+        CFRunLoopStop(self.notificationRunLoop.getCFRunLoop);
+        self.notificationRunLoop = nil;
+    }
 }
 
 @end
