@@ -352,82 +352,76 @@ ABFClusterSizeForZoomLevel ABFDefaultClusterSizeForZoomLevel()
 
 - (BOOL)performFetch
 {
-    @synchronized(self) {
-        // Get the safe objects
-        _safeObjects = [self safeObjectsFromFetchResults:self.fetchRequest.fetchObjects];
-        
-        _annotations = [self uniqueAnnotationsFromSafeObjects:_safeObjects];
-        
-        return YES;
-    }
+    // Get the safe objects
+    _safeObjects = [self safeObjectsFromFetchResults:self.fetchRequest.fetchObjects];
+    
+    _annotations = [self uniqueAnnotationsFromSafeObjects:_safeObjects];
+    
+    return YES;
 }
 
 - (BOOL)performClusteringFetchForVisibleMapRect:(MKMapRect)visibleMapRect
                                       zoomScale:(MKZoomScale)zoomScale
 {
-    @synchronized(self) {
-        ABFZoomLevel zoomLevel = ABFZoomLevelForVisibleMapRect(visibleMapRect);
+    ABFZoomLevel zoomLevel = ABFZoomLevelForVisibleMapRect(visibleMapRect);
+    
+    // Cluster size in pixels
+    NSUInteger clusterSize = self.clusterSizeBlock(zoomLevel);
+    
+    // Create scale factor based on zoom scale and cluster size
+    double scaleFactor = zoomScale/(double)clusterSize;
+    
+    NSMutableDictionary *clusterGrid = [NSMutableDictionary dictionary];
+    
+    // Get the safe objects
+    _safeObjects = [self safeObjectsFromFetchResults:self.fetchRequest.fetchObjects];
+    
+    // Insert safe objects into cluster array
+    for (ABFLocationSafeRealmObject *safeObject in _safeObjects) {
         
-        // Cluster size in pixels
-        NSUInteger clusterSize = self.clusterSizeBlock(zoomLevel);
+        MKMapPoint safeObjectPoint = MKMapPointForCoordinate(safeObject.coordinate);
         
-        // Create scale factor based on zoom scale and cluster size
-        double scaleFactor = zoomScale/(double)clusterSize;
+        // Get x/y values adjusted for scale factor
+        NSUInteger x = floor(safeObjectPoint.x * scaleFactor);
+        NSUInteger y = floor(safeObjectPoint.y * scaleFactor);
         
-        NSMutableDictionary *clusterGrid = [NSMutableDictionary dictionary];
+        NSMutableDictionary *yDict = [clusterGrid objectForKey:@(x)];
         
-        // Get the safe objects
-        _safeObjects = [self safeObjectsFromFetchResults:self.fetchRequest.fetchObjects];
-        
-        // Insert safe objects into cluster array
-        for (ABFLocationSafeRealmObject *safeObject in _safeObjects) {
+        // Create the dictionary for y values
+        if (!yDict) {
             
-            MKMapPoint safeObjectPoint = MKMapPointForCoordinate(safeObject.coordinate);
+            yDict = [NSMutableDictionary dictionary];
             
-            // Get x/y values adjusted for scale factor
-            NSUInteger x = floor(safeObjectPoint.x * scaleFactor);
-            NSUInteger y = floor(safeObjectPoint.y * scaleFactor);
-            
-            NSMutableDictionary *yDict = [clusterGrid objectForKey:@(x)];
-            
-            // Create the dictionary for y values
-            if (!yDict) {
-                
-                yDict = [NSMutableDictionary dictionary];
-                
-                [clusterGrid setObject:yDict
-                                forKey:@(x)];
-            }
-            
-            NSMutableArray *cluster = [yDict objectForKey:@(y)];
-            
-            if (!cluster) {
-                
-                cluster = [NSMutableArray array];
-                
-                [yDict setObject:cluster
-                          forKey:@(y)];
-            }
-            
-            [cluster addObject:safeObject];
+            [clusterGrid setObject:yDict
+                            forKey:@(x)];
         }
         
-        // Create annotations from cluster array
-        _annotations = [self clusterAnnotationsFromClusterGrid:clusterGrid.copy];
+        NSMutableArray *cluster = [yDict objectForKey:@(y)];
         
-        return YES;
+        if (!cluster) {
+            
+            cluster = [NSMutableArray array];
+            
+            [yDict setObject:cluster
+                      forKey:@(y)];
+        }
+        
+        [cluster addObject:safeObject];
     }
+    
+    // Create annotations from cluster array
+    _annotations = [self clusterAnnotationsFromClusterGrid:clusterGrid.copy];
+    
+    return YES;
 }
 
 - (void)updateLocationFetchRequest:(ABFLocationFetchRequest *)fetchRequest
                       titleKeyPath:(NSString *)titleKeyPath
                    subtitleKeyPath:(NSString *)subtitleKeyPath
 {
-    @synchronized(self) {
-        _fetchRequest = fetchRequest;
-        _titleKeyPath = titleKeyPath;
-        _subtitleKeyPath = subtitleKeyPath;
-    }
+    _fetchRequest = fetchRequest;
+    _titleKeyPath = titleKeyPath;
+    _subtitleKeyPath = subtitleKeyPath;
 }
 
 #pragma mark - Setters
