@@ -279,8 +279,8 @@ public class RealmMapView: MKMapView {
     private func toRLMConfiguration(configuration: Realm.Configuration) -> RLMRealmConfiguration {
         let rlmConfiguration = RLMRealmConfiguration()
         
-        if (configuration.path != nil) {
-            rlmConfiguration.path = configuration.path
+        if (configuration.fileURL != nil) {
+            rlmConfiguration.fileURL = configuration.fileURL
         }
         
         if (configuration.inMemoryIdentifier != nil) {
