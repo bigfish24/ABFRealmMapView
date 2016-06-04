@@ -23,7 +23,7 @@ class ViewController: UIViewController {
         */
         
         var config = Realm.Configuration.defaultConfiguration
-        config.path = ABFRestaurantScoresPath()
+        config.fileURL = NSURL(string: ABFRestaurantScoresPath())
         
         self.mapView.realmConfiguration = config
         
