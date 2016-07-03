@@ -106,7 +106,7 @@ public class RealmMapView: MKMapView {
     
     /// Use this property to filter items found by the map. This predicate will be included, via AND,
     /// along with the generated predicate for the location bounding box.
-    public var basePredicate: NSPredicate?
+    public var basePredicate: Predicate?
     
     // MARK: Functions
     
@@ -125,13 +125,13 @@ public class RealmMapView: MKMapView {
             let fetchRequest = ABFLocationFetchRequest(entityName: self.entityName!, inRealm: rlmRealm, latitudeKeyPath: self.latitudeKeyPath!, longitudeKeyPath: self.longitudeKeyPath!, forRegion: currentRegion)
             
             if let basePred = self.basePredicate, let pred = fetchRequest.predicate {
-                let compPred = NSCompoundPredicate(andPredicateWithSubpredicates: [pred, basePred])
+                let compPred = CompoundPredicate(andPredicateWithSubpredicates: [pred, basePred])
                 fetchRequest.predicate = compPred
             }
             
             self.fetchedResultsController.updateLocationFetchRequest(fetchRequest, titleKeyPath: self.titleKeyPath, subtitleKeyPath: self.subtitleKeyPath)
             
-            var refreshOperation: NSBlockOperation?
+            var refreshOperation: BlockOperation?
             
             let visibleMapRect = self.visibleMapRect
             
@@ -141,7 +141,7 @@ public class RealmMapView: MKMapView {
                 
                 let zoomScale = MKZoomScaleForMapView(self)
                 
-                refreshOperation = NSBlockOperation(block: { [weak self] () -> Void in
+                refreshOperation = BlockOperation(block: { [weak self] () -> Void in
                     self?.fetchedResultsController.performClusteringFetchForVisibleMapRect(visibleMapRect, zoomScale: zoomScale)
                     
                     if let annotations = self?.fetchedResultsController.annotations {
@@ -150,7 +150,7 @@ public class RealmMapView: MKMapView {
                 })
             }
             else {
-                refreshOperation = NSBlockOperation(block: { [weak self] () -> Void in
+                refreshOperation = BlockOperation(block: { [weak self] () -> Void in
                     self?.fetchedResultsController.performFetch()
                     
                     if let annotations = self?.fetchedResultsController.annotations {
@@ -193,8 +193,8 @@ public class RealmMapView: MKMapView {
     
     private let ABFAnnotationViewReuseId = "ABFAnnotationViewReuseId"
     
-    private let mapQueue: NSOperationQueue = {
-        let queue = NSOperationQueue()
+    private let mapQueue: OperationQueue = {
+        let queue = OperationQueue()
         queue.maxConcurrentOperationCount = 1
         
         return queue
@@ -202,7 +202,7 @@ public class RealmMapView: MKMapView {
     
     weak private var externalDelegate: MKMapViewDelegate?
     
-    private func addAnnotationsToMapView(annotations: Set<ABFAnnotation>) {
+    private func addAnnotationsToMapView(_ annotations: Set<ABFAnnotation>) {
         let currentAnnotations = NSMutableSet(array: self.annotations)
         
         let newAnnotations = annotations
@@ -221,7 +221,7 @@ public class RealmMapView: MKMapView {
         
         let safeObjects = self.fetchedResultsController.safeObjects
         
-        NSOperationQueue.mainQueue().addOperationWithBlock({ [weak self] () -> Void in
+        OperationQueue.main().addOperation({ [weak self] () -> Void in
             
             if let strongSelf = self {
                 
@@ -247,17 +247,17 @@ public class RealmMapView: MKMapView {
         })
     }
     
-    private func addAnimation(view: UIView) {
-        view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.05, 0.05)
+    private func addAnimation(_ view: UIView) {
+        view.transform = CGAffineTransform.identity.scaleBy(x: 0.05, y: 0.05)
         
-        UIView.animateWithDuration(0.6, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+        UIView.animate(withDuration: 0.6, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options: UIViewAnimationOptions(), animations: { () -> Void in
             
-                view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0, 1.0)
+                view.transform = CGAffineTransform.identity.scaleBy(x: 1.0, y: 1.0)
             
             }, completion: nil)
     }
     
-    private func coordinateRegion(safeObjects: [ABFLocationSafeRealmObject]) -> MKCoordinateRegion {
+    private func coordinateRegion(_ safeObjects: [ABFLocationSafeRealmObject]) -> MKCoordinateRegion {
         var rect = MKMapRectNull
         
         for safeObject in safeObjects {
@@ -276,7 +276,7 @@ public class RealmMapView: MKMapView {
         return region
     }
     
-    private func toRLMConfiguration(configuration: Realm.Configuration) -> RLMRealmConfiguration {
+    private func toRLMConfiguration(_ configuration: Realm.Configuration) -> RLMRealmConfiguration {
         let rlmConfiguration = RLMRealmConfiguration()
         
         if (configuration.path != nil) {
@@ -300,11 +300,11 @@ Delegate proxy that allows the controller to trigger auto refresh and then rebro
 :nodoc:
 */
 extension RealmMapView: MKMapViewDelegate {
-    public func mapView(mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
+    public func mapView(_ mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
         self.externalDelegate?.mapView?(mapView, regionWillChangeAnimated: animated)
     }
     
-    public func mapView(mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+    public func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
         
         if self.autoRefresh {
             self.refreshMapView()
@@ -313,29 +313,29 @@ extension RealmMapView: MKMapViewDelegate {
         self.externalDelegate?.mapView?(mapView, regionDidChangeAnimated: animated)
     }
     
-    public func mapViewWillStartLoadingMap(mapView: MKMapView) {
+    public func mapViewWillStartLoadingMap(_ mapView: MKMapView) {
         self.externalDelegate?.mapViewWillStartLoadingMap?(mapView)
     }
     
-    public func mapViewDidFinishLoadingMap(mapView: MKMapView) {
+    public func mapViewDidFinishLoadingMap(_ mapView: MKMapView) {
         self.externalDelegate?.mapViewDidFinishLoadingMap?(mapView)
     }
     
-    public func mapViewDidFailLoadingMap(mapView: MKMapView, withError error: NSError) {
+    public func mapViewDidFailLoadingMap(_ mapView: MKMapView, withError error: NSError) {
         self.externalDelegate?.mapViewDidFailLoadingMap?(mapView, withError: error)
     }
     
-    public func mapViewWillStartRenderingMap(mapView: MKMapView) {
+    public func mapViewWillStartRenderingMap(_ mapView: MKMapView) {
         self.externalDelegate?.mapViewWillStartRenderingMap?(mapView)
     }
     
-    public func mapViewDidFinishRenderingMap(mapView: MKMapView, fullyRendered: Bool) {
+    public func mapViewDidFinishRenderingMap(_ mapView: MKMapView, fullyRendered: Bool) {
         self.externalDelegate?.mapViewDidFinishRenderingMap?(mapView, fullyRendered: fullyRendered)
     }
     
-    public func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+    public func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
-        if let delegate = self.externalDelegate, let method = delegate.mapView?(mapView, viewForAnnotation: annotation) {
+        if let delegate = self.externalDelegate, let method = delegate.mapView?(mapView, viewFor: annotation) {
             return method
         }
         else if let fetchedAnnotation = annotation as? ABFAnnotation {
@@ -357,7 +357,7 @@ extension RealmMapView: MKMapViewDelegate {
         return nil
     }
     
-    public func mapView(mapView: MKMapView, didAddAnnotationViews views: [MKAnnotationView]) {
+    public func mapView(_ mapView: MKMapView, didAdd views: [MKAnnotationView]) {
         
         if self.animateAnnotations {
             for view in views {
@@ -365,57 +365,57 @@ extension RealmMapView: MKMapViewDelegate {
             }
         }
         
-        self.externalDelegate?.mapView?(mapView, didAddAnnotationViews: views)
+        self.externalDelegate?.mapView?(mapView, didAdd: views)
     }
     
-    public func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+    public func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         self.externalDelegate?.mapView?(mapView, annotationView: view, calloutAccessoryControlTapped: control)
     }
     
-    public func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
-        self.externalDelegate?.mapView?(mapView, didSelectAnnotationView: view)
+    public func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        self.externalDelegate?.mapView?(mapView, didSelect: view)
     }
     
-    public func mapView(mapView: MKMapView, didDeselectAnnotationView view: MKAnnotationView) {
-        self.externalDelegate?.mapView?(mapView, didDeselectAnnotationView: view)
+    public func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
+        self.externalDelegate?.mapView?(mapView, didDeselect: view)
     }
     
-    public func mapViewWillStartLocatingUser(mapView: MKMapView) {
+    public func mapViewWillStartLocatingUser(_ mapView: MKMapView) {
         self.externalDelegate?.mapViewDidStopLocatingUser?(mapView)
     }
     
-    public func mapViewDidStopLocatingUser(mapView: MKMapView) {
+    public func mapViewDidStopLocatingUser(_ mapView: MKMapView) {
         self.externalDelegate?.mapViewDidStopLocatingUser?(mapView)
     }
     
-    public func mapView(mapView: MKMapView, didUpdateUserLocation userLocation: MKUserLocation) {
-        self.externalDelegate?.mapView?(mapView, didUpdateUserLocation: userLocation)
+    public func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
+        self.externalDelegate?.mapView?(mapView, didUpdate: userLocation)
     }
     
-    public func mapView(mapView: MKMapView, didFailToLocateUserWithError error: NSError) {
+    public func mapView(_ mapView: MKMapView, didFailToLocateUserWithError error: NSError) {
         self.externalDelegate?.mapView?(mapView, didFailToLocateUserWithError: error)
     }
     
-    public func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, didChangeDragState newState: MKAnnotationViewDragState, fromOldState oldState: MKAnnotationViewDragState) {
-        self.externalDelegate?.mapView?(mapView, annotationView: view, didChangeDragState: newState, fromOldState: oldState)
+    public func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, didChange newState: MKAnnotationViewDragState, fromOldState oldState: MKAnnotationViewDragState) {
+        self.externalDelegate?.mapView?(mapView, annotationView: view, didChange: newState, fromOldState: oldState)
     }
     
-    public func mapView(mapView: MKMapView, didChangeUserTrackingMode mode: MKUserTrackingMode, animated: Bool) {
-        self.externalDelegate?.mapView?(mapView, didChangeUserTrackingMode: mode, animated: animated)
+    public func mapView(_ mapView: MKMapView, didChange mode: MKUserTrackingMode, animated: Bool) {
+        self.externalDelegate?.mapView?(mapView, didChange: mode, animated: animated)
     }
     
-    public func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
-        return (self.externalDelegate?.mapView?(mapView, rendererForOverlay: overlay))!
+    public func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        return (self.externalDelegate?.mapView?(mapView, rendererFor: overlay))!
     }
     
-    public func mapView(mapView: MKMapView, didAddOverlayRenderers renderers: [MKOverlayRenderer]) {
-        self.externalDelegate?.mapView?(mapView, didAddOverlayRenderers: renderers)
+    public func mapView(_ mapView: MKMapView, didAdd renderers: [MKOverlayRenderer]) {
+        self.externalDelegate?.mapView?(mapView, didAdd: renderers)
     }
 }
 
 /// Extension to ABFLocationSafeRealmObject to convert back to original Object type
 extension ABFLocationSafeRealmObject {
-    public func toObject<T>(type: T.Type) -> T {
+    public func toObject<T>(_ type: T.Type) -> T {
         return unsafeBitCast(self.RLMObject(), T.self)
     }
 }
