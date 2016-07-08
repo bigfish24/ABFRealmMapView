@@ -204,7 +204,12 @@ public class RealmMapView: MKMapView {
     weak fileprivate var externalDelegate: MKMapViewDelegate?
     
     private func addAnnotationsToMapView(_ annotations: Set<ABFAnnotation>) {
-        let currentAnnotations = NSMutableSet(array: self.annotations)
+        var currentAnnotations: NSMutableSet!
+        if self.annotations.count == 0 {
+            currentAnnotations = NSMutableSet()
+        } else {
+            currentAnnotations = NSMutableSet(array: self.annotations)
+        }
         
         let newAnnotations = annotations
         
