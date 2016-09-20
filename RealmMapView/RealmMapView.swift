@@ -203,7 +203,12 @@ public class RealmMapView: MKMapView {
     weak private var externalDelegate: MKMapViewDelegate?
     
     private func addAnnotationsToMapView(annotations: Set<ABFAnnotation>) {
-        let currentAnnotations = NSMutableSet(array: self.annotations)
+        var currentAnnotations: NSMutableSet!
+        if self.annotations.count == 0 {
+            currentAnnotations = NSMutableSet()
+        } else {
+            currentAnnotations = NSMutableSet(array: self.annotations)
+        }
         
         let newAnnotations = annotations
         
@@ -279,8 +284,8 @@ public class RealmMapView: MKMapView {
     private func toRLMConfiguration(configuration: Realm.Configuration) -> RLMRealmConfiguration {
         let rlmConfiguration = RLMRealmConfiguration()
         
-        if (configuration.path != nil) {
-            rlmConfiguration.path = configuration.path
+        if (configuration.fileURL != nil) {
+            rlmConfiguration.fileURL = configuration.fileURL
         }
         
         if (configuration.inMemoryIdentifier != nil) {
