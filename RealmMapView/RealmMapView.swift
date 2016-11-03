@@ -322,7 +322,7 @@ extension RealmMapView: MKMapViewDelegate {
         self.externalDelegate?.mapViewDidFinishLoadingMap?(mapView)
     }
     
-    public func mapViewDidFailLoadingMap(_ mapView: MKMapView, withError error: NSError) {
+    public func mapViewDidFailLoadingMap(_ mapView: MKMapView, withError error: Error) {
         self.externalDelegate?.mapViewDidFailLoadingMap?(mapView, withError: error)
     }
     
@@ -393,7 +393,7 @@ extension RealmMapView: MKMapViewDelegate {
         self.externalDelegate?.mapView?(mapView, didUpdate: userLocation)
     }
     
-    public func mapView(_ mapView: MKMapView, didFailToLocateUserWithError error: NSError) {
+    public func mapView(_ mapView: MKMapView, didFailToLocateUserWithError error: Error) {
         self.externalDelegate?.mapView?(mapView, didFailToLocateUserWithError: error)
     }
     
