@@ -6,6 +6,7 @@
 //  Copyright © 2015 Adam Fish. All rights reserved.
 //
 
+import ABFRealmMapView
 import MapKit
 import RealmSwift
 
@@ -106,7 +107,7 @@ public class RealmMapView: MKMapView {
     
     /// Use this property to filter items found by the map. This predicate will be included, via AND,
     /// along with the generated predicate for the location bounding box.
-    public var basePredicate: Predicate?
+    public var basePredicate: NSPredicate?
     
     // MARK: Functions
     
@@ -122,14 +123,14 @@ public class RealmMapView: MKMapView {
         
         if let rlmRealm = try? RLMRealm(configuration: rlmConfig) {
             
-            let fetchRequest = ABFLocationFetchRequest(entityName: self.entityName!, inRealm: rlmRealm, latitudeKeyPath: self.latitudeKeyPath!, longitudeKeyPath: self.longitudeKeyPath!, forRegion: currentRegion)
+            let fetchRequest = ABFLocationFetchRequest(entityName: self.entityName!, in: rlmRealm, latitudeKeyPath: self.latitudeKeyPath!, longitudeKeyPath: self.longitudeKeyPath!, for: currentRegion)
             
             if let basePred = self.basePredicate, let pred = fetchRequest.predicate {
-                let compPred = CompoundPredicate(andPredicateWithSubpredicates: [pred, basePred])
+                let compPred = NSCompoundPredicate(andPredicateWithSubpredicates: [pred, basePred])
                 fetchRequest.predicate = compPred
             }
             
-            self.fetchedResultsController.updateLocationFetchRequest(fetchRequest, titleKeyPath: self.titleKeyPath, subtitleKeyPath: self.subtitleKeyPath)
+            self.fetchedResultsController.update(fetchRequest, titleKeyPath: self.titleKeyPath, subtitleKeyPath: self.subtitleKeyPath)
             
             var refreshOperation: BlockOperation?
             
@@ -142,7 +143,7 @@ public class RealmMapView: MKMapView {
                 let zoomScale = MKZoomScaleForMapView(self)
                 
                 refreshOperation = BlockOperation(block: { [weak self] () -> Void in
-                    self?.fetchedResultsController.performClusteringFetchForVisibleMapRect(visibleMapRect, zoomScale: zoomScale)
+                    self?.fetchedResultsController.performClusteringFetch(forVisibleMapRect: visibleMapRect, zoomScale: zoomScale)
                     
                     if let annotations = self?.fetchedResultsController.annotations {
                         self?.addAnnotationsToMapView(annotations)
@@ -191,7 +192,7 @@ public class RealmMapView: MKMapView {
     // MARK: Private
     private var internalConfiguration: Realm.Configuration?
     
-    private let ABFAnnotationViewReuseId = "ABFAnnotationViewReuseId"
+    fileprivate let ABFAnnotationViewReuseId = "ABFAnnotationViewReuseId"
     
     private let mapQueue: OperationQueue = {
         let queue = OperationQueue()
@@ -200,7 +201,7 @@ public class RealmMapView: MKMapView {
         return queue
     }()
     
-    weak private var externalDelegate: MKMapViewDelegate?
+    weak fileprivate var externalDelegate: MKMapViewDelegate?
     
     private func addAnnotationsToMapView(_ annotations: Set<ABFAnnotation>) {
         let currentAnnotations = NSMutableSet(array: self.annotations)
@@ -209,19 +210,19 @@ public class RealmMapView: MKMapView {
         
         let toKeep = NSMutableSet(set: currentAnnotations)
         
-        toKeep.intersectSet(newAnnotations as Set<NSObject>)
+        toKeep.intersect(newAnnotations as Set<NSObject>)
         
         let toAdd = NSMutableSet(set: newAnnotations)
         
-        toAdd.minusSet(toKeep as Set<NSObject>)
+        toAdd.minus(toKeep as Set<NSObject>)
         
         let toRemove = NSMutableSet(set: currentAnnotations)
         
-        toRemove.minusSet(newAnnotations)
+        toRemove.minus(newAnnotations)
         
         let safeObjects = self.fetchedResultsController.safeObjects
         
-        OperationQueue.main().addOperation({ [weak self] () -> Void in
+        OperationQueue.main.addOperation({ [weak self] () -> Void in
             
             if let strongSelf = self {
                 
@@ -247,12 +248,12 @@ public class RealmMapView: MKMapView {
         })
     }
     
-    private func addAnimation(_ view: UIView) {
-        view.transform = CGAffineTransform.identity.scaleBy(x: 0.05, y: 0.05)
+    fileprivate func addAnimation(_ view: UIView) {
+        view.transform = CGAffineTransform.identity.scaledBy(x: 0.05, y: 0.05)
         
         UIView.animate(withDuration: 0.6, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options: UIViewAnimationOptions(), animations: { () -> Void in
             
-                view.transform = CGAffineTransform.identity.scaleBy(x: 1.0, y: 1.0)
+                view.transform = CGAffineTransform.identity.scaledBy(x: 1.0, y: 1.0)
             
             }, completion: nil)
     }
@@ -279,8 +280,8 @@ public class RealmMapView: MKMapView {
     private func toRLMConfiguration(_ configuration: Realm.Configuration) -> RLMRealmConfiguration {
         let rlmConfiguration = RLMRealmConfiguration()
         
-        if (configuration.path != nil) {
-            rlmConfiguration.path = configuration.path
+        if (configuration.fileURL != nil) {
+            rlmConfiguration.fileURL = configuration.fileURL
         }
         
         if (configuration.inMemoryIdentifier != nil) {
@@ -340,7 +341,7 @@ extension RealmMapView: MKMapViewDelegate {
         }
         else if let fetchedAnnotation = annotation as? ABFAnnotation {
             
-            var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(ABFAnnotationViewReuseId) as! ABFClusterAnnotationView?
+            var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: ABFAnnotationViewReuseId) as! ABFClusterAnnotationView?
             
             if annotationView == nil {
                 annotationView = ABFClusterAnnotationView(annotation: fetchedAnnotation, reuseIdentifier: ABFAnnotationViewReuseId)
@@ -416,6 +417,6 @@ extension RealmMapView: MKMapViewDelegate {
 /// Extension to ABFLocationSafeRealmObject to convert back to original Object type
 extension ABFLocationSafeRealmObject {
     public func toObject<T>(_ type: T.Type) -> T {
-        return unsafeBitCast(self.RLMObject(), T.self)
+        return unsafeBitCast(self.rlmObject(), to: T.self)
     }
 }
