@@ -13,13 +13,13 @@ import RealmSwift
 /**
 The RealmMapView class creates an interface object that inherits MKMapView and manages fetching and displaying annotations for a Realm Swift object class that contains coordinate data.
 */
-public class RealmMapView: MKMapView {
+open class RealmMapView: MKMapView {
     // MARK: Properties
     
     /// The configuration for the Realm in which the entity resides
     ///
     /// Default is [RLMRealmConfiguration defaultConfiguration]
-    public var realmConfiguration: Realm.Configuration {
+    open var realmConfiguration: Realm.Configuration {
         set {
             self.internalConfiguration = newValue
         }
@@ -33,54 +33,54 @@ public class RealmMapView: MKMapView {
     }
     
     /// The Realm in which the given entity resides in
-    public var realm: Realm {
+    open var realm: Realm {
         return try! Realm(configuration: self.realmConfiguration)
     }
     
     /// The internal controller that fetches the Realm objects
-    public var fetchedResultsController: ABFLocationFetchedResultsController = {
+    open var fetchedResultsController: ABFLocationFetchedResultsController = {
         let controller = ABFLocationFetchedResultsController()
         
         return controller
     }()
     
     /// The Realm object's name being fetched for the map view
-    @IBInspectable public var entityName: String?
+    @IBInspectable open var entityName: String?
     
     /// The key path on fetched Realm objects for the latitude value
-    @IBInspectable public var latitudeKeyPath: String?
+    @IBInspectable open var latitudeKeyPath: String?
     
     /// The key path on fetched Realm objects for the longitude value
-    @IBInspectable public var longitudeKeyPath: String?
+    @IBInspectable open var longitudeKeyPath: String?
     
     /// The key path on fetched Realm objects for the title of the annotation view
     ///
     /// If nil, then no title will be shown
-    @IBInspectable public var titleKeyPath: String?
+    @IBInspectable open var titleKeyPath: String?
     
     /// The key path on fetched Realm objects for the subtitle of the annotation view
     ///
     /// If nil, then no subtitle
-    @IBInspectable public var subtitleKeyPath: String?
+    @IBInspectable open var subtitleKeyPath: String?
     
     /// Designates if the map view will cluster the annotations
-    @IBInspectable public var clusterAnnotations = true
+    @IBInspectable open var clusterAnnotations = true
     
     /// Designates if the map view automatically refreshes when the map moves
-    @IBInspectable public var autoRefresh = true
+    @IBInspectable open var autoRefresh = true
     
     /// Designates if the map view will zoom to a region that contains all points
     /// on the first refresh of the map annotations (presumably on viewWillAppear)
-    @IBInspectable public var zoomOnFirstRefresh = true
+    @IBInspectable open var zoomOnFirstRefresh = true
     
     /// If enabled, annotation views will be animated when added to the map.
     ///
     /// Default is YES
-    @IBInspectable public var animateAnnotations = true
+    @IBInspectable open var animateAnnotations = true
     
     /// If YES, a standard callout bubble will be shown when the annotation is selected.
     /// The annotation must have a title for the callout to be shown.
-    @IBInspectable public var canShowCallout = true
+    @IBInspectable open var canShowCallout = true
     
     /// Max zoom level of the map view to perform clustering on.
     ///
@@ -89,14 +89,14 @@ public class RealmMapView: MKMapView {
     /// 20 is max zoom
     ///
     /// Default is 20, which means clustering will occur at every zoom level if clusterAnnotations is YES
-    public var maxZoomLevelForClustering: ABFZoomLevel = 20
+    open var maxZoomLevelForClustering: ABFZoomLevel = 20
     
     /// The limit on how many results from Realm will be added to the map.
     ///
     /// This applies whether or not clustering is enabled.
     ///
     /// Default is -1, or unlimited results.
-    public var resultsLimit: ABFResultsLimit {
+    open var resultsLimit: ABFResultsLimit {
         set {
             self.fetchedResultsController.resultsLimit = newValue
         }
@@ -107,12 +107,12 @@ public class RealmMapView: MKMapView {
     
     /// Use this property to filter items found by the map. This predicate will be included, via AND,
     /// along with the generated predicate for the location bounding box.
-    public var basePredicate: NSPredicate?
+    open var basePredicate: NSPredicate?
     
     // MARK: Functions
     
     /// Performs a fresh fetch for Realm objects based on the current visible map rect
-    public func refreshMapView() {
+    open func refreshMapView() {
         objc_sync_enter(self)
         
         self.mapQueue.cancelAllOperations()
@@ -180,7 +180,7 @@ public class RealmMapView: MKMapView {
     }
     
     // MARK: Setters
-    override weak public var delegate: MKMapViewDelegate? {
+    override weak open var delegate: MKMapViewDelegate? {
         get {
             return externalDelegate
         }
@@ -190,11 +190,11 @@ public class RealmMapView: MKMapView {
     }
     
     // MARK: Private
-    private var internalConfiguration: Realm.Configuration?
+    fileprivate var internalConfiguration: Realm.Configuration?
     
     fileprivate let ABFAnnotationViewReuseId = "ABFAnnotationViewReuseId"
     
-    private let mapQueue: OperationQueue = {
+    fileprivate let mapQueue: OperationQueue = {
         let queue = OperationQueue()
         queue.maxConcurrentOperationCount = 1
         
@@ -203,7 +203,7 @@ public class RealmMapView: MKMapView {
     
     weak fileprivate var externalDelegate: MKMapViewDelegate?
     
-    private func addAnnotationsToMapView(_ annotations: Set<ABFAnnotation>) {
+    fileprivate func addAnnotationsToMapView(_ annotations: Set<ABFAnnotation>) {
         var currentAnnotations: NSMutableSet!
         if self.annotations.count == 0 {
             currentAnnotations = NSMutableSet()
@@ -263,7 +263,7 @@ public class RealmMapView: MKMapView {
             }, completion: nil)
     }
     
-    private func coordinateRegion(_ safeObjects: [ABFLocationSafeRealmObject]) -> MKCoordinateRegion {
+    fileprivate func coordinateRegion(_ safeObjects: [ABFLocationSafeRealmObject]) -> MKCoordinateRegion {
         var rect = MKMapRectNull
         
         for safeObject in safeObjects {
@@ -282,7 +282,7 @@ public class RealmMapView: MKMapView {
         return region
     }
     
-    private func toRLMConfiguration(_ configuration: Realm.Configuration) -> RLMRealmConfiguration {
+    fileprivate func toRLMConfiguration(_ configuration: Realm.Configuration) -> RLMRealmConfiguration {
         let rlmConfiguration = RLMRealmConfiguration()
         
         if (configuration.fileURL != nil) {
@@ -327,7 +327,7 @@ extension RealmMapView: MKMapViewDelegate {
         self.externalDelegate?.mapViewDidFinishLoadingMap?(mapView)
     }
     
-    public func mapViewDidFailLoadingMap(_ mapView: MKMapView, withError error: Error) {
+    public func mapViewDidFailLoadingMap(_ mapView: MKMapView, withError error: RealmSwift.Error) {
         self.externalDelegate?.mapViewDidFailLoadingMap?(mapView, withError: error)
     }
     
@@ -398,7 +398,7 @@ extension RealmMapView: MKMapViewDelegate {
         self.externalDelegate?.mapView?(mapView, didUpdate: userLocation)
     }
     
-    public func mapView(_ mapView: MKMapView, didFailToLocateUserWithError error: Error) {
+    public func mapView(_ mapView: MKMapView, didFailToLocateUserWithError error: RealmSwift.Error) {
         self.externalDelegate?.mapView?(mapView, didFailToLocateUserWithError: error)
     }
     
