@@ -1,7 +1,10 @@
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '8.0'
+
 use_frameworks!
 
 target 'RealmMapViewExample' do
   pod 'RealmSwift', '>=0.96'
-  pod 'SwiftFetchedResultsController', '>=2.4'
+  pod 'SwiftFetchedResultsController', path: '../../RBQFetchedResultsController'
   pod 'RealmSwiftSFRestaurantData', '>=0.4.1'
 end
