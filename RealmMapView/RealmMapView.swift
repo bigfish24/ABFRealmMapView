@@ -6,7 +6,6 @@
 //  Copyright © 2015 Adam Fish. All rights reserved.
 //
 
-import ABFRealmMapView
 import MapKit
 import RealmSwift
 
@@ -119,7 +118,7 @@ open class RealmMapView: MKMapView {
         
         let currentRegion = self.region
         
-        let rlmConfig = self.toRLMConfiguration(self.realmConfiguration)
+        let rlmConfig = ObjectiveCSupport.convert(object: self.realmConfiguration)
         
         if let rlmRealm = try? RLMRealm(configuration: rlmConfig) {
             
@@ -281,23 +280,6 @@ open class RealmMapView: MKMapView {
         
         return region
     }
-    
-    fileprivate func toRLMConfiguration(_ configuration: Realm.Configuration) -> RLMRealmConfiguration {
-        let rlmConfiguration = RLMRealmConfiguration()
-        
-        if (configuration.fileURL != nil) {
-            rlmConfiguration.fileURL = configuration.fileURL
-        }
-        
-        if (configuration.inMemoryIdentifier != nil) {
-            rlmConfiguration.inMemoryIdentifier = configuration.inMemoryIdentifier
-        }
-        
-        rlmConfiguration.encryptionKey = configuration.encryptionKey
-        rlmConfiguration.readOnly = configuration.readOnly
-        rlmConfiguration.schemaVersion = configuration.schemaVersion
-        return rlmConfiguration
-    }
 }
 
 /**
@@ -327,7 +309,7 @@ extension RealmMapView: MKMapViewDelegate {
         self.externalDelegate?.mapViewDidFinishLoadingMap?(mapView)
     }
     
-    public func mapViewDidFailLoadingMap(_ mapView: MKMapView, withError error: RealmSwift.Error) {
+    public func mapViewDidFailLoadingMap(_ mapView: MKMapView, withError error: Error) {
         self.externalDelegate?.mapViewDidFailLoadingMap?(mapView, withError: error)
     }
     
@@ -398,7 +380,7 @@ extension RealmMapView: MKMapViewDelegate {
         self.externalDelegate?.mapView?(mapView, didUpdate: userLocation)
     }
     
-    public func mapView(_ mapView: MKMapView, didFailToLocateUserWithError error: RealmSwift.Error) {
+    public func mapView(_ mapView: MKMapView, didFailToLocateUserWithError error: Error) {
         self.externalDelegate?.mapView?(mapView, didFailToLocateUserWithError: error)
     }
     
