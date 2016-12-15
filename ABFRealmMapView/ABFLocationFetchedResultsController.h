@@ -16,7 +16,7 @@
 #elif __has_include("RBQSafeRealmObject.h")
 #import "RBQSafeRealmObject.h"
 #else
-#import <RBQFetchedResultsController/RBQSafeRealmObject.h>
+#import <RBQSafeRealmObject/RBQSafeRealmObject.h>
 #endif
 
 /**
