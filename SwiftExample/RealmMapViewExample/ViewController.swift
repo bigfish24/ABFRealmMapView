@@ -23,7 +23,8 @@ class ViewController: UIViewController {
         */
         
         var config = Realm.Configuration.defaultConfiguration
-        config.fileURL = NSURL(string: ABFRestaurantScoresPath())
+
+        config.fileURL = URL(string: ABFRestaurantScoresPath())
         
         self.mapView.realmConfiguration = config
         
@@ -46,7 +47,7 @@ class ViewController: UIViewController {
         self.mapView.resultsLimit = 200
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         self.mapView.refreshMapView()
@@ -59,8 +60,8 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: MKMapViewDelegate {
-    func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
-        if let safeObjects = ABFClusterAnnotationView.safeObjectsForClusterAnnotationView(view) {
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        if let safeObjects = ABFClusterAnnotationView.safeObjects(forClusterAnnotationView: view) {
             
             if let firstObjectName = safeObjects.first?.toObject(ABFRestaurantObject).name {
                 print("First Object: \(firstObjectName)")
@@ -70,7 +71,7 @@ extension ViewController: MKMapViewDelegate {
         }
     }
     
-    func mapView(mapView: MKMapView, didAddAnnotationViews views: [MKAnnotationView]) {
+    func mapView(_ mapView: MKMapView, didAdd views: [MKAnnotationView]) {
         if self.mapView.fetchedResultsController.safeObjects.count == self.mapView.resultsLimit {
             print("Hit Results Limit!")
         }

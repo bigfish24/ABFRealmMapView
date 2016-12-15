@@ -34,7 +34,7 @@
      */
     
     RLMRealmConfiguration *config = [RLMRealmConfiguration defaultConfiguration];
-    config.path = ABFRestaurantScoresPath();
+    config.fileURL = [NSURL URLWithString:[NSString stringWithFormat:@"file://%@", ABFRestaurantScoresPath()]];
     
     self.mapView.realmConfiguration = config;
     

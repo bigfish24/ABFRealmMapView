@@ -1,13 +1,14 @@
-# Uncomment this line to define a global platform for your project
-# platform :ios, '6.0'
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '8.0'
 
 target 'ABFRealmMapViewExample' do
   pod 'Realm', ">=0.96"
-  pod 'RBQFetchedResultsController'
+  pod 'RBQFetchedResultsController', path: '../../RBQFetchedResultsController'
   pod 'RealmSFRestaurantData', ">=0.3"
-end
 
-target 'ABFRealmMapViewExampleTests' do
-  pod 'Realm/Headers'
+  target 'ABFRealmMapViewExampleTests' do
+    inherit! :search_paths
+    pod 'Realm/Headers'
+  end
 end
 
