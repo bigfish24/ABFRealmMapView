@@ -11,12 +11,10 @@
 @import Foundation;
 @import MapKit;
 
-#if __has_include(<RealmMapView/RealmMapView-BridgingHeader.h>)
-@import RBQFetchedResultsController;
-#elif __has_include("RBQSafeRealmObject.h")
+#if __has_include("RBQSafeRealmObject.h")
 #import "RBQSafeRealmObject.h"
 #else
-#import <RBQSafeRealmObject/RBQSafeRealmObject.h>
+@import RBQFetchedResultsController;
 #endif
 
 /**
