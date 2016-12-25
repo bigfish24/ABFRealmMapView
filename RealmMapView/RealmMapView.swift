@@ -8,6 +8,7 @@
 
 import MapKit
 import RealmSwift
+import ABFRealmMapView
 
 /**
 The RealmMapView class creates an interface object that inherits MKMapView and manages fetching and displaying annotations for a Realm Swift object class that contains coordinate data.

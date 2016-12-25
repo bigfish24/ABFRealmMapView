@@ -1,0 +1,10 @@
+framework module ABFRealmMapView {
+umbrella header "ABFRMV.h"
+
+export *
+module * { export * }
+}
+
+module ABFRealmMapView.Swift {
+     header "ABFRealmMapView-Swift.h"
+ }

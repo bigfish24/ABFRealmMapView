@@ -8,12 +8,7 @@
 #import "ABFLocationFetchedResultsController.h"
 
 @import MapKit;
-
-#if __has_include(<RealmMapView/RealmMapView-BridgingHeader.h>)
 @import Realm;
-#else
-#import <Realm/Realm.h>
-#endif
 
 /**
  *  The class creates a map interface to display annotations representing Realm object locations.
