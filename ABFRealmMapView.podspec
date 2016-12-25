@@ -14,4 +14,5 @@ The ABFRealmMapView class creates an interface object that inherits MKMapView an
   s.requires_arc = true
   s.dependency "RBQFetchedResultsController", ">= 2.0"
   s.dependency "Realm", ">= 0.98"
+  s.dependency "RBQSafeRealmObject"
 end
