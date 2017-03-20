@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "RealmMapView"
-  s.version      = "2.0"
+  s.version      = "2.1"
   s.summary      = "Drop-in clustering map interface for Realm Swift objects"
   s.description  = <<-DESC
 The RealmMapView class creates an interface object that inherits MKMapView and manages fetching and displaying annotations for a Realm Swift object class that contains coordinate data.
@@ -12,7 +12,7 @@ The RealmMapView class creates an interface object that inherits MKMapView and m
   s.source       = { :git => "https://github.com/bigfish24/ABFRealmMapView.git", :tag => "v#{s.version}" }
   s.source_files  = "RealmMapView/*.{h,swift}"
   s.requires_arc = true
-  s.dependency "SwiftFetchedResultsController", ">= 5.0.1"
   s.dependency "RealmSwift", ">= 2.1.1"
   s.dependency "ABFRealmMapView", ">=#{s.version}"
+  s.dependency "RBQSafeRealmObject"
 end
