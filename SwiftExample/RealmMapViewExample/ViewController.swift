@@ -11,7 +11,6 @@ import MapKit
 import RealmSwift
 import RealmSwiftSFRestaurantData
 import RealmMapView
-import ABFRealmMapView
 
 class ViewController: UIViewController {
 
@@ -63,7 +62,7 @@ class ViewController: UIViewController {
 
 extension ViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        if let safeObjects = ABFClusterAnnotationView.safeObjects(forClusterAnnotationView: view) {
+        if let safeObjects = ClusterAnnotationView.safeObjects(forClusterAnnotationView: view) {
             
             if let firstObjectName = safeObjects.first?.toObject(ABFRestaurantObject.self).name {
                 print("First Object: \(firstObjectName)")

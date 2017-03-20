@@ -10,6 +10,12 @@ import MapKit
 import RealmSwift
 import ABFRealmMapView
 
+public typealias ClusterAnnotationView = ABFClusterAnnotationView
+public typealias LocationSafeRealmObject = ABFLocationSafeRealmObject
+public typealias LocationFetchedResultsController = ABFLocationFetchedResultsController
+public typealias ZoomLevel = ABFZoomLevel
+public typealias ResultsLimit = ABFResultsLimit
+
 /**
 The RealmMapView class creates an interface object that inherits MKMapView and manages fetching and displaying annotations for a Realm Swift object class that contains coordinate data.
 */
@@ -38,7 +44,7 @@ open class RealmMapView: MKMapView {
     }
     
     /// The internal controller that fetches the Realm objects
-    open var fetchedResultsController: ABFLocationFetchedResultsController = {
+    open var fetchedResultsController: LocationFetchedResultsController = {
         let controller = ABFLocationFetchedResultsController()
         
         return controller
@@ -89,14 +95,14 @@ open class RealmMapView: MKMapView {
     /// 20 is max zoom
     ///
     /// Default is 20, which means clustering will occur at every zoom level if clusterAnnotations is YES
-    open var maxZoomLevelForClustering: ABFZoomLevel = 20
+    open var maxZoomLevelForClustering: ZoomLevel = 20
     
     /// The limit on how many results from Realm will be added to the map.
     ///
     /// This applies whether or not clustering is enabled.
     ///
     /// Default is -1, or unlimited results.
-    open var resultsLimit: ABFResultsLimit {
+    open var resultsLimit: ResultsLimit {
         set {
             self.fetchedResultsController.resultsLimit = newValue
         }
@@ -403,7 +409,7 @@ extension RealmMapView: MKMapViewDelegate {
 }
 
 /// Extension to ABFLocationSafeRealmObject to convert back to original Object type
-extension ABFLocationSafeRealmObject {
+extension LocationSafeRealmObject {
     public func toObject<T>(_ type: T.Type) -> T {
         return unsafeBitCast(self.rlmObject(), to: T.self)
     }
