@@ -1,1 +1,2 @@
-github "Roobiq/RBQFetchedResultsController"
+github "realm/realm-cocoa"
+github "roobiq/RBQSafeRealmObject"

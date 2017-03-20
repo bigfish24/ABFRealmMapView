@@ -3,7 +3,7 @@ platform :ios, '8.0'
 
 target 'ABFRealmMapViewExample' do
   pod 'Realm', ">=0.96"
-  pod 'RBQFetchedResultsController', path: '../../RBQFetchedResultsController'
+  pod 'RBQSafeRealmObject'
   pod 'RealmSFRestaurantData', ">=0.3"
 
   target 'ABFRealmMapViewExampleTests' do

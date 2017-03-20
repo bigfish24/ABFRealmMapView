@@ -7,6 +7,7 @@
 //
 
 #import "ABFLocationFetchRequest.h"
+#import <Realm/RLMRealm_Dynamic.h>
 
 #pragma mark - Public Functions
 
@@ -82,9 +83,17 @@ NSPredicate * NSPredicateForCoordinateRegion(MKCoordinateRegion region,
     return predicate;
 }
 
+@interface ABFLocationFetchRequest ()
+
+@property (strong, nonatomic) RLMRealm *realmForMainThread; // Improves scroll performance
+
+@end
+
 #pragma mark - ABFLocationFetchRequest
 
 @implementation ABFLocationFetchRequest
+@synthesize entityName = _entityName,
+realmConfiguration = _realmConfiguration;
 
 + (instancetype)locationFetchRequestWithEntityName:(NSString *)entityName
                                            inRealm:(RLMRealm *)realm
@@ -95,14 +104,113 @@ NSPredicate * NSPredicateForCoordinateRegion(MKCoordinateRegion region,
     // Create the predicate from the coordinate region
     NSPredicate *predicate = NSPredicateForCoordinateRegion(region, latitudeKeyPath, longitudeKeyPath);
     
-    ABFLocationFetchRequest *fetchRequest = [[self alloc] initWithEntityName:entityName inRealm:realm];
+    ABFLocationFetchRequest *fetchRequest = [[self alloc] initWithEntityName:entityName
+                                                                     inRealm:realm
+                                                             latitudeKeyPath:latitudeKeyPath
+                                                            longitudeKeyPath:longitudeKeyPath
+                                                                   forRegion:region];
     
     fetchRequest.predicate = predicate;
-    fetchRequest->_region = region;
-    fetchRequest->_latitudeKeyPath = latitudeKeyPath;
-    fetchRequest->_longitudeKeyPath = longitudeKeyPath;
     
     return fetchRequest;
+}
+
+#pragma mark - Public Instance
+
+- (instancetype)initWithEntityName:(NSString *)entityName
+                           inRealm:(RLMRealm *)realm
+                   latitudeKeyPath:(NSString *)latitudeKeyPath
+                  longitudeKeyPath:(NSString *)longitudeKeyPath
+                         forRegion:(MKCoordinateRegion)region
+{
+    self = [super init];
+    
+    if (self) {
+        // Returns the appropriate class name for Obj-C or Swift
+        _entityName = entityName;
+        _realmConfiguration = realm.configuration;
+        _latitudeKeyPath = latitudeKeyPath;
+        _longitudeKeyPath = longitudeKeyPath;
+        _region = region;
+    }
+    
+    return self;
+}
+
+- (id<RLMCollection>)fetchObjects
+{
+    RLMResults *fetchResults = [self.realm allObjects:self.entityName];
+    
+    // If we have a predicate use it
+    if (self.predicate) {
+        fetchResults = [fetchResults objectsWithPredicate:self.predicate];
+    }
+    
+    // If we have sort descriptors then use them
+    if (self.sortDescriptors.count > 0) {
+        fetchResults = [fetchResults sortedResultsUsingDescriptors:self.sortDescriptors];
+    }
+    
+    return fetchResults;
+}
+
+- (BOOL)evaluateObject:(RLMObject *)object
+{
+    // If we have a predicate, use it
+    if (self.predicate) {
+        return [self.predicate evaluateWithObject:object];
+    }
+    
+    // Verify the class name of object match the entity name of fetch request
+    NSString *className = [[object class] className];
+    
+    BOOL sameEntity = [className isEqualToString:self.entityName];
+    
+    return sameEntity;
+}
+
+#pragma mark - Getter
+
+- (RLMRealm *)realm
+{
+    if ([NSThread isMainThread] &&
+        !self.realmForMainThread) {
+        
+        self.realmForMainThread = [RLMRealm realmWithConfiguration:self.realmConfiguration
+                                                             error:nil];
+    }
+    
+    if ([NSThread isMainThread]) {
+        
+        return self.realmForMainThread;
+    }
+    
+    return [RLMRealm realmWithConfiguration:self.realmConfiguration
+                                      error:nil];
+}
+
+#pragma mark - Hash
+
+- (NSUInteger)hash
+{
+    if (self.predicate &&
+        self.sortDescriptors) {
+        
+        NSUInteger sortHash = 1;
+        
+        for (RLMSortDescriptor *sortDescriptor in self.sortDescriptors) {
+            sortHash = sortHash ^ sortDescriptor.hash;
+        }
+        
+        return self.predicate.hash ^ sortHash ^ self.entityName.hash;
+    }
+    else if (self.predicate &&
+             self.entityName) {
+        return self.predicate.hash ^ self.entityName.hash;
+    }
+    else {
+        return [super hash];
+    }
 }
 
 @end

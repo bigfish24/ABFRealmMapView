@@ -1,8 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -14,12 +17,11 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Fpu-NM-92I" customClass="RealmMapView" customModule="RealmMapViewExample" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <animations/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Fpu-NM-92I" customClass="RealmMapView" customModule="RealmMapView">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="entityName" value="ABFRestaurantObject"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="latitudeKeyPath" value="latitude"/>
@@ -29,13 +31,12 @@
                                 </userDefinedRuntimeAttributes>
                             </mapView>
                         </subviews>
-                        <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="Fpu-NM-92I" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="ORw-WA-1ip"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Fpu-NM-92I" secondAttribute="bottom" id="SLH-C4-O5C"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Fpu-NM-92I" secondAttribute="trailing" constant="-20" id="oAt-VA-ZDS"/>
-                            <constraint firstItem="Fpu-NM-92I" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="-20" id="pFJ-3e-cxG"/>
+                            <constraint firstItem="Fpu-NM-92I" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Gxf-dL-FBc"/>
+                            <constraint firstItem="Fpu-NM-92I" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="MDd-dh-w4s"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Fpu-NM-92I" secondAttribute="bottom" id="hno-5G-jz7"/>
+                            <constraint firstAttribute="trailing" secondItem="Fpu-NM-92I" secondAttribute="trailing" id="uN8-pL-eGI"/>
                         </constraints>
                     </view>
                     <connections>
@@ -44,6 +45,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="140" y="97.601199400299862"/>
         </scene>
     </scenes>
 </document>
