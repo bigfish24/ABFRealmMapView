@@ -529,7 +529,14 @@ ABFClusterSizeForZoomLevel ABFDefaultClusterSizeForZoomLevel()
             
             NSArray *cluster = [yDict objectForKey:yKey];
             
-            ABFAnnotation *annotation = [ABFAnnotation annotationWithType:ABFAnnotationTypeCluster];
+            ABFAnnotation *annotation;
+            
+            if (cluster.count > 1) {
+                annotation = [ABFAnnotation annotationWithType:ABFAnnotationTypeCluster];
+            }
+            else {
+                annotation = [ABFAnnotation annotationWithType:ABFAnnotationTypeUnique];
+            }
             
             NSUInteger clusterCount = cluster.count;
             

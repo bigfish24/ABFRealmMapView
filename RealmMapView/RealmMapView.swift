@@ -15,6 +15,8 @@ public typealias LocationSafeRealmObject = ABFLocationSafeRealmObject
 public typealias LocationFetchedResultsController = ABFLocationFetchedResultsController
 public typealias ZoomLevel = ABFZoomLevel
 public typealias ResultsLimit = ABFResultsLimit
+public typealias Annotation = ABFAnnotation
+public typealias AnnotationType = ABFAnnotationType
 
 /**
 The RealmMapView class creates an interface object that inherits MKMapView and manages fetching and displaying annotations for a Realm Swift object class that contains coordinate data.
