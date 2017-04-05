@@ -148,35 +148,38 @@ open class RealmMapView: MKMapView {
             
             self.fetchedResultsController.update(fetchRequest, titleKeyPath: self.titleKeyPath, subtitleKeyPath: self.subtitleKeyPath)
             
-            var refreshOperation: BlockOperation?
-            
             let visibleMapRect = self.visibleMapRect
             
             let currentZoomLevel = ABFZoomLevelForVisibleMapRect(visibleMapRect)
             
+            let refreshOperation: BlockOperation
             if self.clusterAnnotations && currentZoomLevel <= self.maxZoomLevelForClustering {
                 
                 let zoomScale = MKZoomScaleForMapView(self)
                 
-                refreshOperation = BlockOperation(block: { [weak self] () -> Void in
-                    self?.fetchedResultsController.performClusteringFetch(forVisibleMapRect: visibleMapRect, zoomScale: zoomScale)
-                    
-                    if let annotations = self?.fetchedResultsController.annotations {
-                        self?.addAnnotationsToMapView(annotations)
+                refreshOperation = BlockOperation { [weak self] _ in
+                    guard let strongSelf = self else {
+                        return
                     }
-                })
+                    strongSelf.fetchedResultsController.performClusteringFetch(forVisibleMapRect: visibleMapRect, zoomScale: zoomScale)
+                    
+                    let annotations = strongSelf.fetchedResultsController.annotations
+                    strongSelf.addAnnotationsToMapView(annotations)
+                }
             }
             else {
-                refreshOperation = BlockOperation(block: { [weak self] () -> Void in
-                    self?.fetchedResultsController.performFetch()
-                    
-                    if let annotations = self?.fetchedResultsController.annotations {
-                        self?.addAnnotationsToMapView(annotations)
+                refreshOperation = BlockOperation { [weak self] _ in
+                    guard let strongSelf = self else {
+                        return
                     }
-                })
+                    strongSelf.fetchedResultsController.performFetch()
+                    
+                    let annotations = strongSelf.fetchedResultsController.annotations
+                    strongSelf.addAnnotationsToMapView(annotations)
+                }
             }
             
-            self.mapQueue.addOperation(refreshOperation!)
+            self.mapQueue.addOperation(refreshOperation)
         }
         
         objc_sync_exit(self)
@@ -220,63 +223,68 @@ open class RealmMapView: MKMapView {
     weak fileprivate var externalDelegate: MKMapViewDelegate?
     
     fileprivate func addAnnotationsToMapView(_ annotations: Set<ABFAnnotation>) {
-        var currentAnnotations: NSMutableSet!
-        if self.annotations.count == 0 {
-            currentAnnotations = NSMutableSet()
-        } else {
-            currentAnnotations = NSMutableSet(array: self.annotations)
-        }
-        
-        let newAnnotations = annotations
-        
-        let toKeep = NSMutableSet(set: currentAnnotations)
-        
-        toKeep.intersect(newAnnotations as Set<NSObject>)
-        
-        let toAdd = NSMutableSet(set: newAnnotations)
-        
-        toAdd.minus(toKeep as Set<NSObject>)
-        
-        let toRemove = NSMutableSet(set: currentAnnotations)
-        
-        toRemove.minus(newAnnotations)
-        
         let safeObjects = self.fetchedResultsController.safeObjects
-        
-        OperationQueue.main.addOperation({ [weak self] () -> Void in
+        DispatchQueue.main.async { [weak self] _ in
+            guard let strongSelf = self else {
+                return
+            }
             
-            if let strongSelf = self {
+            let currentAnnotations: NSMutableSet
+            if strongSelf.annotations.isEmpty {
+                currentAnnotations = NSMutableSet()
+            } else {
+                currentAnnotations = NSMutableSet(array: strongSelf.annotations)
+            }
+            
+            let newAnnotations = annotations
+            
+            let toKeep = NSMutableSet(set: currentAnnotations)
+            
+            toKeep.intersect(newAnnotations as Set<NSObject>)
+            
+            let toAdd = NSMutableSet(set: newAnnotations)
+            
+            toAdd.minus(toKeep as Set<NSObject>)
+            
+            let toRemove = NSMutableSet(set: currentAnnotations)
+            
+            toRemove.minus(newAnnotations)
                 
-                if strongSelf.zoomOnFirstRefresh && safeObjects.count > 0 {
+            if strongSelf.zoomOnFirstRefresh && safeObjects.count > 0 {
+                
+                strongSelf.zoomOnFirstRefresh = false
+                
+                let region = strongSelf.coordinateRegion(safeObjects)
+                
+                strongSelf.setRegion(region, animated: true)
+            }
+            else {
+                if let addAnnotations = toAdd.allObjects as? [MKAnnotation] {
                     
-                    strongSelf.zoomOnFirstRefresh = false
-                    
-                    let region = strongSelf.coordinateRegion(safeObjects)
-                    
-                    strongSelf.setRegion(region, animated: true)
-                }
-                else {
-                    if let addAnnotations = toAdd.allObjects as? [MKAnnotation] {
+                    if let removeAnnotations = toRemove.allObjects as? [MKAnnotation] {
                         
-                        if let removeAnnotations = toRemove.allObjects as? [MKAnnotation] {
-                            
-                            strongSelf.addAnnotations(addAnnotations)
-                            strongSelf.removeAnnotations(removeAnnotations)
-                        }
+                        strongSelf.addAnnotations(addAnnotations)
+                        strongSelf.removeAnnotations(removeAnnotations)
                     }
                 }
             }
-        })
+        }
     }
     
     fileprivate func addAnimation(_ view: UIView) {
         view.transform = CGAffineTransform.identity.scaledBy(x: 0.05, y: 0.05)
         
-        UIView.animate(withDuration: 0.6, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options: UIViewAnimationOptions(), animations: { () -> Void in
-            
+        UIView.animate(
+            withDuration: 0.6,
+            delay: 0,
+            usingSpringWithDamping: 0.5,
+            initialSpringVelocity: 1,
+            options: UIViewAnimationOptions(),
+            animations: { _ in
                 view.transform = CGAffineTransform.identity.scaledBy(x: 1.0, y: 1.0)
-            
-            }, completion: nil)
+            },
+            completion: nil
+        )
     }
     
     fileprivate func coordinateRegion(_ safeObjects: [ABFLocationSafeRealmObject]) -> MKCoordinateRegion {
