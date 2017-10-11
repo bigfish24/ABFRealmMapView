@@ -132,7 +132,8 @@ open class RealmMapView: MKMapView {
         if let rlmRealm = try? RLMRealm(configuration: rlmConfig) {
             
             let fetchRequest = ABFLocationFetchRequest(entityName: self.entityName!, in: rlmRealm, latitudeKeyPath: self.latitudeKeyPath!, longitudeKeyPath: self.longitudeKeyPath!, for: currentRegion)
-            
+            fetchRequest.predicate = NSPredicateForCoordinateRegion(currentRegion, self.latitudeKeyPath!, self.longitudeKeyPath!)
+
             var predicates = [NSPredicate]()
             if let basePred = self.basePredicate {
                 predicates.append(basePred)
