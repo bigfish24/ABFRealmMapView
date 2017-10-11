@@ -19,7 +19,6 @@ DerivedData
 .DS_Store
 Podfile.lock
 Pods
-xcshareddata
 *.xcworkspace
 
 # CocoaPods
