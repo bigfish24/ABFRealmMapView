@@ -14,6 +14,13 @@ const double ABFNoDistance = DBL_MAX;
 
 #pragma mark - ABFLocationSafeRealmObject
 
+@interface ABFLocationSafeRealmObject()
+
+@property (nonatomic, strong) id internalObject;
+@property (nonatomic, strong) RLMRealmConfiguration *realmConfiguration;
+
+@end
+
 @implementation ABFLocationSafeRealmObject
 
 #pragma mark - Public Class
@@ -23,10 +30,12 @@ const double ABFNoDistance = DBL_MAX;
                                        title:(NSString *)title
                                     subtitle:(NSString *)subtitle
 {
-    ABFLocationSafeRealmObject *safeObject = [self safeObjectFromObject:object];
+    ABFLocationSafeRealmObject *safeObject = [[self alloc] init];
+    safeObject->_threadSafeReference = [RLMThreadSafeReference referenceWithThreadConfined:object];
     safeObject->_coordinate = coordinate;
     safeObject->_title = title ? title : @"";
     safeObject->_subtitle = subtitle ? subtitle : @"";
+    safeObject.realmConfiguration = object.realm.configuration;
     
     return safeObject;
 }
@@ -40,6 +49,48 @@ const double ABFNoDistance = DBL_MAX;
     }
     
     return ABFNoDistance;
+}
+
+- (id)RLMObject
+{
+    if (!_internalObject) {
+        RLMRealm *realm = [RLMRealm realmWithConfiguration:self.realmConfiguration
+                                                     error:nil];
+        _internalObject = [realm resolveThreadSafeReference:_threadSafeReference];
+    }
+    
+    return _internalObject;
+}
+
+#pragma mark - Equality
+
+- (BOOL)isEqual:(id)object
+{
+    if ([self RLMObject] == [object RLMObject]) {
+        return YES;
+    }
+    if (![object isKindOfClass:[ABFLocationSafeRealmObject class]]) {
+        return NO;
+    }
+    return [[self RLMObject] isEqualToObject:[object RLMObject]];
+}
+
+- (NSUInteger)hash
+{
+    return [[self RLMObject] hash];
+}
+
+#pragma mark - <NSCopying>
+
+- (id)copyWithZone:(NSZone *)zone
+{
+    ABFLocationSafeRealmObject *safeObject = [[ABFLocationSafeRealmObject allocWithZone:zone] init];
+    safeObject->_threadSafeReference = _threadSafeReference;
+    safeObject->_coordinate = _coordinate;
+    safeObject->_title = _title;
+    safeObject->_subtitle = _subtitle;
+    
+    return safeObject;
 }
 
 @end

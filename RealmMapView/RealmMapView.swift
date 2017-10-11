@@ -430,6 +430,7 @@ extension RealmMapView: MKMapViewDelegate {
 /// Extension to ABFLocationSafeRealmObject to convert back to original Object type
 extension LocationSafeRealmObject {
     public func toObject<T>(_ type: T.Type) -> T {
-        return unsafeBitCast(self.rlmObject(), to: T.self)
+        let object = self.rlmObject() as! RLMObjectBase
+        return unsafeBitCast(object, to: T.self)
     }
 }

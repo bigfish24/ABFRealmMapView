@@ -11,12 +11,6 @@
 @import Foundation;
 @import MapKit;
 
-#if __has_include(<RealmMapView/RealmMapView.h>)
-@import RBQSafeRealmObject;
-#else
-#import <RBQSafeRealmObject/RBQSafeRealmObject.h>
-#endif
-
 
 /**
  *  Value of ABFLocationSafeRealmObject currentDistance when there is no distance.
@@ -24,11 +18,11 @@
 extern const double ABFNoDistance;
 
 /**
- *  Subclass of RBQSafeRealmObject to hold a representation of Realm object that works across threads.
+ *  Class to hold a representation of Realm object that works across threads.
  *
  *  Adds support to hold location information.
  */
-@interface ABFLocationSafeRealmObject : RBQSafeRealmObject
+@interface ABFLocationSafeRealmObject : NSObject <NSCopying>
 
 /**
  *  The coordinate location of the Realm object
@@ -53,6 +47,13 @@ extern const double ABFNoDistance;
 @property (nonatomic, assign) CLLocationDistance currentDistance;
 
 /**
+ *
+ * The thread-safe reference of the object
+ *
+ */
+@property (nonatomic, readonly, nonnull) RLMThreadSafeReference *threadSafeReference;
+
+/**
  *  Creates an instance of ABFLocationSafeRealmObject.
  *
  *  @param object       the original Realm object
@@ -66,6 +67,14 @@ extern const double ABFNoDistance;
                                           coordinate:(CLLocationCoordinate2D)coordinate
                                                title:(nullable NSString *)title
                                             subtitle:(nullable NSString *)subtitle;
+
+/**
+ *  Quickly convert a RLMThreadSafeReference into its RLMObject
+ *
+ *  @return RLMObject
+ */
+- (nonnull id)RLMObject;
+
 @end
 
 /**
