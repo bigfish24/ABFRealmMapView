@@ -632,7 +632,7 @@ static NSString * const ABFAnnotationViewReuseId = @"ABFAnnotationViewReuseId";
         
         CFRunLoopPerformBlock(self.notificationRunLoop.getCFRunLoop, kCFRunLoopDefaultMode, ^{
             if (weakSelf.notificationToken) {
-                [weakSelf.notificationToken stop];
+                [weakSelf.notificationToken invalidate];
                 weakSelf.notificationToken = nil;
                 weakSelf.notificationCollection = nil;
             }
