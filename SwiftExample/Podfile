@@ -6,5 +6,4 @@ use_frameworks!
 target 'RealmMapViewExample' do
   pod 'RealmSwift', '>=0.96'
   pod 'RealmSwiftSFRestaurantData', '>=0.4.1'
-  pod 'RBQSafeRealmObject'
 end
