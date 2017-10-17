@@ -2,7 +2,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '8.0'
 
 target 'ABFRealmMapViewExample' do
-  pod 'Realm', ">=0.96"
+  pod 'Realm', '~> 3.0.0'
   pod 'RealmSFRestaurantData', ">=0.3"
 
   target 'ABFRealmMapViewExampleTests' do

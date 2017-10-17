@@ -1,1 +1,1 @@
-github "realm/realm-cocoa"
+github "realm/realm-cocoa" ~> 3.0.0
