@@ -158,7 +158,7 @@ open class RealmMapView: MKMapView {
                 
                 let zoomScale = MKZoomScaleForMapView(self)
                 
-                refreshOperation = BlockOperation { [weak self] _ in
+                refreshOperation = BlockOperation { [weak self] in
                     guard let strongSelf = self else {
                         return
                     }
@@ -169,7 +169,7 @@ open class RealmMapView: MKMapView {
                 }
             }
             else {
-                refreshOperation = BlockOperation { [weak self] _ in
+                refreshOperation = BlockOperation { [weak self] in
                     guard let strongSelf = self else {
                         return
                     }
@@ -225,7 +225,7 @@ open class RealmMapView: MKMapView {
     
     fileprivate func addAnnotationsToMapView(_ annotations: Set<ABFAnnotation>) {
         let safeObjects = self.fetchedResultsController.safeObjects
-        DispatchQueue.main.async { [weak self] _ in
+        DispatchQueue.main.async { [weak self] in
             guard let strongSelf = self else {
                 return
             }
@@ -281,7 +281,7 @@ open class RealmMapView: MKMapView {
             usingSpringWithDamping: 0.5,
             initialSpringVelocity: 1,
             options: UIViewAnimationOptions(),
-            animations: { _ in
+            animations: {
                 view.transform = CGAffineTransform.identity.scaledBy(x: 1.0, y: 1.0)
             },
             completion: nil
